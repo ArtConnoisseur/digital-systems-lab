@@ -1,0 +1,80 @@
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+--------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.2 (win64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
+| Date         : Sat Mar 07 00:27:24 2026
+| Host         : LAPTOP-20CMFUI9 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file SystemTop_control_sets_placed.rpt
+| Design       : SystemTop
+| Device       : xc7a35t
+--------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Flip-Flop Distribution
+3. Detailed Control Set Information
+
+1. Summary
+----------
+
++-------------------------------------------------------------------+-------+
+|                               Status                              | Count |
++-------------------------------------------------------------------+-------+
+| Number of unique control sets                                     |    27 |
+| Minimum Number of register sites lost to control set restrictions |    42 |
++-------------------------------------------------------------------+-------+
+
+
+2. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              35 |           14 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              77 |           37 |
+| Yes          | No                    | No                     |              17 |            8 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |             245 |           77 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+3. Detailed Control Set Information
+-----------------------------------
+
++----------------+---------------------------------------------------------------+--------------------------------------+------------------+----------------+
+|  Clock Signal  |                         Enable Signal                         |           Set/Reset Signal           | Slice Load Count | Bel Load Count |
++----------------+---------------------------------------------------------------+--------------------------------------+------------------+----------------+
+|  CLK_IBUF_BUFG | mouse/mouse_core/TX/FSM_sequential_Curr_State[3]_i_1_n_0      | RESET_IBUF                           |                1 |              4 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/RX/BitCount[3]_i_1_n_0                       | RESET_IBUF                           |                2 |              4 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/MSM/MouseX_reg[0]_0                          | mouse/mouse_core/MSM/MouseX_reg[0]_1 |                2 |              4 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/MSM/FSM_sequential_Curr_State_reg[3]_i_1_n_0 | RESET_IBUF                           |                1 |              4 |
+|  CLK_IBUF_BUFG | cpu/CurrProgContext[3]_i_1_n_0                                | RESET_IBUF                           |                1 |              4 |
+|  CLK_IBUF_BUFG | cpu/ALU0/E[0]                                                 | RESET_IBUF                           |                2 |              4 |
+|  CLK_IBUF_BUFG | cpu/FSM_sequential_CurrState[4]_i_1_n_0                       | RESET_IBUF                           |                3 |              5 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/RX/ShiftReg[7]_i_1_n_0                       | RESET_IBUF                           |                3 |              8 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/MSM/Curr_Status[7]_i_1_n_0                   | RESET_IBUF                           |                3 |              8 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/MSM/Curr_Dy[7]_i_1_n_0                       | RESET_IBUF                           |                3 |              8 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/MSM/Curr_Dx[7]_i_1_n_0                       | RESET_IBUF                           |                3 |              8 |
+|  CLK_IBUF_BUFG | cpu/digit3_reg[0][0]                                          | RESET_IBUF                           |                2 |              8 |
+|  CLK_IBUF_BUFG | cpu/digit1_reg[0][0]                                          | RESET_IBUF                           |                2 |              8 |
+|  CLK_IBUF_BUFG | cpu/LED_reg[7][0]                                             | RESET_IBUF                           |                2 |              8 |
+|  CLK_IBUF_BUFG | cpu/InterruptRate_reg[7][0]                                   | RESET_IBUF                           |                2 |              8 |
+|  CLK_IBUF_BUFG | cpu/E[0]                                                      |                                      |                3 |              8 |
+|  CLK_IBUF_BUFG | cpu/CurrRegB[7]_i_1_n_0                                       | RESET_IBUF                           |                1 |              8 |
+|  CLK_IBUF_BUFG | cpu/CurrRegA[7]_i_1_n_0                                       | RESET_IBUF                           |                3 |              8 |
+|  CLK_IBUF_BUFG | cpu/CurrBusDataOutWE_i_1_n_0                                  | RESET_IBUF                           |                3 |              8 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/MSM/MouseX_reg[0]_0                          |                                      |                5 |              9 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/TX/Curr_SendCounter[15]_i_1_n_0              | RESET_IBUF                           |                8 |             16 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/MSM/SendInterrupt                            | RESET_IBUF                           |                7 |             24 |
+|  CLK_IBUF_BUFG | mouse/mouse_core/MSM/Curr_Counter[23]_i_1_n_0                 | RESET_IBUF                           |                6 |             24 |
+|  CLK_IBUF_BUFG | timer/TargetReached1                                          | RESET_IBUF                           |                9 |             32 |
+|  CLK_IBUF_BUFG | timer/Timer[0]_i_2_n_0                                        | cpu/Timer_reg[31]                    |                8 |             32 |
+|  CLK_IBUF_BUFG |                                                               |                                      |               14 |             35 |
+|  CLK_IBUF_BUFG |                                                               | RESET_IBUF                           |               37 |             77 |
++----------------+---------------------------------------------------------------+--------------------------------------+------------------+----------------+
+
+

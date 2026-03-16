@@ -1,0 +1,451 @@
+#-----------------------------------------------------------
+# Vivado v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Tue Mar 03 01:15:45 2026
+# Process ID: 56540
+# Log file: C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/vivado.log
+# Journal file: C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.xpr
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Vivado/Vivado/2015.2/data/ip'.
+launch_simulation
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'SystemTop' in fileset 'sim_1'...
+INFO: [USF-XSim-66] Exported 'C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sim_1/imports/NewMouse/Complete_Demo_RAM.mem'
+INFO: [USF-XSim-66] Exported 'C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sim_1/imports/NewMouse/Complete_Demo_ROM.mem'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav'
+"xvlog -m64 --relax -prj SystemTop_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransmitter.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MouseTransmitter
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseReceiver.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MouseReceiver
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseMasterSM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MouseMasterSM
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransceiver.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module MouseTransceiver
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/seg7decoder.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module seg7decoder
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/7Seg_Peripheral.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SevenSeg_Peripheral
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Processor.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Processor
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Time.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Timer
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ROM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ROM
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/LED_.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module LED_Peripheral
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/RAM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RAM
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/Top.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Mouse_Peripheral
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/SystemTop.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module SystemTop
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav'
+Vivado Simulator 2015.2
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: D:/Vivado/Vivado/2015.2/bin/unwrapped/win64.o/xelab.exe -wto 5d64393edc4948f0a73387be3b64bbf8 --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot SystemTop_behav xil_defaultlib.SystemTop xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+WARNING: [XSIM 43-4099] "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/seg7decoder.v" Line 30. Module seg7decoder doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseReceiver.v" Line 26. Module MouseReceiver doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseMasterSM.v" Line 17. Module MouseMasterSM doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/seg7decoder.v" Line 30. Module seg7decoder doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseReceiver.v" Line 26. Module MouseReceiver doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseMasterSM.v" Line 17. Module MouseMasterSM doesn't have a timescale but at least one module in design has a timescale.
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.LED_Peripheral
+Compiling module xil_defaultlib.seg7decoder
+Compiling module xil_defaultlib.SevenSeg_Peripheral
+Compiling module xil_defaultlib.ALU
+Compiling module xil_defaultlib.Processor
+Compiling module xil_defaultlib.ROM
+Compiling module xil_defaultlib.RAM
+Compiling module xil_defaultlib.MouseTransmitter
+Compiling module xil_defaultlib.MouseReceiver
+Compiling module xil_defaultlib.MouseMasterSM
+Compiling module xil_defaultlib.MouseTransceiver
+Compiling module xil_defaultlib.Mouse_Peripheral
+Compiling module xil_defaultlib.Timer
+Compiling module xil_defaultlib.SystemTop
+Compiling module xil_defaultlib.glbl
+Waiting for 2 sub-compilation(s) to finish...
+Built simulation snapshot SystemTop_behav
+
+****** Webtalk v2015.2 (64-bit)
+  **** SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+  **** IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+    ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+
+source C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav/xsim.dir/SystemTop_behav/webtalk/xsim_webtalk.tcl -notrace
+
+    while executing
+"webtalk_transmit -clientid 2898197023 -regid "213171080_0_0_320" -xml C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8..."
+    (file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav/xsim.dir/SystemTop_behav/webtalk/xsim_webtalk.tcl" line 41)
+INFO: [Common 17-206] Exiting Webtalk at Tue Mar 03 01:15:59 2026...
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "SystemTop_behav -key {Behavioral:sim_1:Functional:SystemTop} -tclbatch {SystemTop.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2015.2
+Time resolution is 1 ps
+source SystemTop.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+WARNING: File Complete_Demo_ROM.txt referenced on C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ROM.v at line 32 cannot be opened for reading. Please ensure that this file is available in the current working directory.
+WARNING: File Complete_Demo_RAM.txt referenced on C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/RAM.v at line 32 cannot be opened for reading. Please ensure that this file is available in the current working directory.
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'SystemTop_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_simulation: Time (s): cpu = 00:00:02 ; elapsed = 00:00:05 . Memory (MB): peak = 872.938 ; gain = 18.168
+set_property top Processor_TB [get_filesets sim_1]
+set_property top_lib xil_defaultlib [get_filesets sim_1]
+update_compile_order -fileset sim_1
+launch_simulation
+WARNING: [Vivado 12-3661] Failed to remove file:C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav/simulate.log
+WARNING: [Vivado 12-3661] Failed to remove file:C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav/SystemTop_behav.wdb
+WARNING: [Vivado 12-3661] Failed to remove file:C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav/xelab.pb
+INFO: [USF-XSim-27] Simulation object is 'sim_1'
+INFO: [USF-XSim-37] Inspecting design source files for 'Processor_TB' in fileset 'sim_1'...
+INFO: [USF-XSim-66] Exported 'C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sim_1/imports/NewMouse/Complete_Demo_RAM.mem'
+INFO: [USF-XSim-66] Exported 'C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sim_1/imports/NewMouse/Complete_Demo_ROM.mem'
+INFO: [USF-XSim-97] Finding global include files...
+INFO: [USF-XSim-98] Fetching design files from 'sim_1'...
+INFO: [USF-XSim-2] XSim::Compile design
+INFO: [USF-XSim-61] Executing 'COMPILE' step in 'C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav'
+"xvlog -m64 --relax -prj Processor_TB_vlog.prj"
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ALU.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ALU
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Processor.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Processor
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ROM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module ROM
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/RAM.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module RAM
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sim_1/imports/new/Processor_TB.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module Processor_TB
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl
+INFO: [USF-XSim-3] XSim::Elaborate design
+INFO: [USF-XSim-61] Executing 'ELABORATE' step in 'C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav'
+Vivado Simulator 2015.2
+Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+Running: D:/Vivado/Vivado/2015.2/bin/unwrapped/win64.o/xelab.exe -wto 5d64393edc4948f0a73387be3b64bbf8 --debug typical --relax --mt 2 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Processor_TB_behav xil_defaultlib.Processor_TB xil_defaultlib.glbl -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module xil_defaultlib.ALU
+Compiling module xil_defaultlib.Processor
+Compiling module xil_defaultlib.ROM
+Compiling module xil_defaultlib.RAM
+Compiling module xil_defaultlib.Processor_TB
+Compiling module xil_defaultlib.glbl
+Waiting for 2 sub-compilation(s) to finish...
+Built simulation snapshot Processor_TB_behav
+
+****** Webtalk v2015.2 (64-bit)
+  **** SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+  **** IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+    ** Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+
+source C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav/xsim.dir/Processor_TB_behav/webtalk/xsim_webtalk.tcl -notrace
+
+    while executing
+"webtalk_transmit -clientid 69833495 -regid "213171080_0_0_320" -xml C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8te..."
+    (file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav/xsim.dir/Processor_TB_behav/webtalk/xsim_webtalk...." line 41)
+INFO: [Common 17-206] Exiting Webtalk at Tue Mar 03 01:16:24 2026...
+INFO: [USF-XSim-4] XSim::Simulate design
+INFO: [USF-XSim-61] Executing 'SIMULATE' step in 'C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.sim/sim_1/behav'
+INFO: [USF-XSim-98] *** Running xsim
+   with args "Processor_TB_behav -key {Behavioral:sim_1:Functional:Processor_TB} -tclbatch {Processor_TB.tcl} -log {simulate.log}"
+INFO: [USF-XSim-8] Loading simulator feature
+Vivado Simulator 2015.2
+Time resolution is 1 ps
+source Processor_TB.tcl
+# set curr_wave [current_wave_config]
+# if { [string length $curr_wave] == 0 } {
+#   if { [llength [get_objects]] > 0} {
+#     add_wave /
+#     set_property needs_save false [current_wave_config]
+#   } else {
+#      send_msg_id Add_Wave-1 WARNING "No top level signals found. Simulator will start without a wave window. If you want to open a wave window go to 'File->New Waveform Configuration' or type 'create_wave_config' in the TCL console."
+#   }
+# }
+# run 1000ns
+WARNING: File Complete_Demo_ROM.txt referenced on C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ROM.v at line 32 cannot be opened for reading. Please ensure that this file is available in the current working directory.
+WARNING: File Complete_Demo_RAM.txt referenced on C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/RAM.v at line 32 cannot be opened for reading. Please ensure that this file is available in the current working directory.
+Time=5000 | PC=xx | State=xx | A=xx | B=xx | BUS_ADDR=xx | WE=x
+Time=15000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=25000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=35000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=45000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=55000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=65000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=75000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=85000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=95000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=105000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=115000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=125000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=135000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=145000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=155000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=165000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=175000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=185000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=195000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=205000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=215000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=225000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=235000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=245000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=255000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=265000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=275000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=285000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=295000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=305000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=315000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=325000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=335000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=345000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=355000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=365000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=375000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=385000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=395000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=405000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=415000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=425000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=435000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=445000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=455000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=465000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=475000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=485000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=495000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=505000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=515000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=525000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=535000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=545000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=555000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=565000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=575000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=585000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=595000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=605000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=615000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=625000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=635000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=645000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=655000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=665000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=675000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=685000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=695000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=705000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=715000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=725000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=735000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=745000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=755000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=765000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=775000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=785000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=795000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=805000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=815000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=825000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=835000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=845000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=855000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=865000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=875000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=885000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=895000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=905000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=915000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=925000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=935000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=945000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=955000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=965000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=975000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=985000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+Time=995000 | PC=00 | State=00 | A=00 | B=00 | BUS_ADDR=ff | WE=0
+INFO: [USF-XSim-96] XSim completed. Design snapshot 'Processor_TB_behav' loaded.
+INFO: [USF-XSim-97] XSim simulation ran for 1000ns
+launch_runs synth_1 -jobs 4
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/7Seg_Peripheral.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/7Seg_Peripheral.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ALU.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ALU.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/LED_.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/LED_.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseMasterSM.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseMasterSM.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseReceiver.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseReceiver.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransceiver.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransceiver.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransmitter.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransmitter.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Processor.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Processor.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/RAM.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/RAM.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ROM.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ROM.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/SystemTop.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/SystemTop.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Time.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Time.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/Top.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/Top.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/seg7decoder.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/seg7decoder.v:1]
+[Tue Mar 03 01:16:31 2026] Launched synth_1...
+Run output will be captured here: C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 4
+[Tue Mar 03 01:16:51 2026] Launched impl_1...
+Run output will be captured here: C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Mar 03 01:17:19 2026] Launched impl_1...
+Run output will be captured here: C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/impl_1/runme.log
+open_hw
+connect_hw_server -url localhost:3121
+INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121
+INFO: [Labtools 27-2222] Launching hw_server...
+INFO: [Labtools 27-2221] Launch Output:
+
+****** Xilinx hw_server v2015.2
+  **** Build date : Jun 26 2015-16:56:39
+    ** Copyright 1986-1999, 2001-2015 Xilinx, Inc. All Rights Reserved.
+
+
+current_hw_target [get_hw_targets */xilinx_tcf/Digilent/210183ACAC83A]
+set_property PARAM.FREQUENCY 15000000 [get_hw_targets */xilinx_tcf/Digilent/210183ACAC83A]
+open_hw_target
+INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210183ACAC83A
+set_property PROGRAM.FILE {C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/impl_1/SystemTop.bit} [lindex [get_hw_devices] 0]
+current_hw_device [lindex [get_hw_devices] 0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices] 0]
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+set_property PROBES.FILE {} [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/impl_1/SystemTop.bit} [lindex [get_hw_devices] 0]
+program_hw_devices [lindex [get_hw_devices] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices] 0]
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+ERROR: [Labtools 27-3175] Target jsn-Basys3-210183ACAC83A is no longer available.
+Please use disconnect_hw_server to close the current server connection. Check cable connectivity and that the target board is powered up.
+Restart the hw_server application running on host localhost, port 3121 and then use connect_hw_server to re-establish connection to target.
+close_hw_target
+INFO: [Labtoolstcl 44-464] Closing hw_target localhost:3121/xilinx_tcf/Digilent/210183ACAC83A
+remove_files C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/new/Complete_Demo_RAM.txt
+file delete -force C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/new/Complete_Demo_RAM.txt
+remove_files C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/new/Complete_Demo_ROM.txt
+file delete -force C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/new/Complete_Demo_ROM.txt
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/7Seg_Peripheral.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/7Seg_Peripheral.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ALU.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ALU.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/LED_.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/LED_.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseMasterSM.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseMasterSM.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseReceiver.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseReceiver.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransceiver.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransceiver.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransmitter.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransmitter.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Processor.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Processor.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/RAM.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/RAM.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ROM.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ROM.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/SystemTop.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/SystemTop.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Time.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Time.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/Top.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/Top.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/seg7decoder.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/seg7decoder.v:1]
+[Tue Mar 03 01:24:53 2026] Launched synth_1...
+Run output will be captured here: C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/synth_1/runme.log
+add_files -norecurse -scan_for_includes {C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Complete_Demo_ROM.txt C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Complete_Demo_RAM.txt}
+import_files -norecurse {C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Complete_Demo_ROM.txt C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Complete_Demo_RAM.txt}
+set_property file_type {Memory Initialization Files} [get_files  C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Complete_Demo_RAM.txt]
+set_property file_type {Memory Initialization Files} [get_files  C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Complete_Demo_ROM.txt]
+reset_run synth_1
+launch_runs synth_1 -jobs 4
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/7Seg_Peripheral.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/7Seg_Peripheral.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ALU.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ALU.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/LED_.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/LED_.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseMasterSM.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseMasterSM.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseReceiver.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseReceiver.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransceiver.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransceiver.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransmitter.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/MouseTransmitter.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Processor.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Processor.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/RAM.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/RAM.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ROM.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/ROM.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/SystemTop.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/SystemTop.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Time.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/Mouse_Proceesor_W8test/Time.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/Top.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/Top.v:1]
+INFO: [HDL 9-2216] Analyzing Verilog file "C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/seg7decoder.v" into library work [C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.srcs/sources_1/imports/MouseNew/seg7decoder.v:1]
+[Tue Mar 03 01:27:32 2026] Launched synth_1...
+Run output will be captured here: C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/synth_1/runme.log
+launch_runs impl_1 -jobs 4
+[Tue Mar 03 01:28:06 2026] Launched impl_1...
+Run output will be captured here: C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/impl_1/runme.log
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+[Tue Mar 03 01:28:34 2026] Launched impl_1...
+Run output will be captured here: C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/impl_1/runme.log
+set_property PROBES.FILE {} [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/impl_1/SystemTop.bit} [lindex [get_hw_devices] 0]
+program_hw_devices [lindex [get_hw_devices] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices] 0]
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+ERROR: [Labtools 27-3175] Target jsn-Basys3-210183ACAC83A is no longer available.
+Please use disconnect_hw_server to close the current server connection. Check cable connectivity and that the target board is powered up.
+Restart the hw_server application running on host localhost, port 3121 and then use connect_hw_server to re-establish connection to target.
+close_hw_target
+INFO: [Labtoolstcl 44-464] Closing hw_target localhost:3121/xilinx_tcf/Digilent/210183ACAC83A
+set_property PROBES.FILE {} [lindex [get_hw_devices] 0]
+set_property PROGRAM.FILE {C:/Users/Louis/Desktop/UoE/Fourth_Year/Mouse_Proceesor_W8test/Mouse_Proceesor_W8test.runs/impl_1/SystemTop.bit} [lindex [get_hw_devices] 0]
+program_hw_devices [lindex [get_hw_devices] 0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices] 0]
+INFO: [Labtools 27-1434] Device xc7a35t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+WARNING: [Labtools 27-3123] The debug hub core was not detected at User Scan Chain 1 or 3.
+Resolution: 
+1. Make sure the clock connected to the debug hub (dbg_hub) core is a free running clock and is active OR
+2. Manually launch hw_server with -e "set xsdb-user-bscan <C_USER_SCAN_CHAIN scan_chain_number>" to detect the debug hub at User Scan Chain of 2 or 4. To determine the user scan chain setting, open the implemented design and use: get_property C_USER_SCAN_CHAIN [get_debug_cores dbg_hub].
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+close_sim
+INFO: [Simtcl 6-16] Simulation closed
+exit
+ERROR: [Labtools 27-3175] Target jsn-Basys3-210183ACAC83A is no longer available.
+Please use disconnect_hw_server to close the current server connection. Check cable connectivity and that the target board is powered up.
+Restart the hw_server application running on host localhost, port 3121 and then use connect_hw_server to re-establish connection to target.
+INFO: [Common 17-206] Exiting Vivado at Tue Mar 03 01:30:28 2026...
