@@ -118,4 +118,17 @@ module TopLevel(
         .VS(VS)
     );
 
+    // Mouse Peripheral
+    Mouse_Peripheral(
+        .CLK(CLK),
+        .RESET(RESET),
+        .BUS_DATA(BusData),
+        .BUS_ADDR(BusAddr),
+        .BUS_WE(BusWE),
+        .BUS_INTERRUPT_RAISE(BusInterruptsRaise),
+        .BUS_INTERRUPT_ACK(BusInterruptsAck),
+        .CLK_MOUSE(CLK_MOUSE),
+        .DATA_MOUSE(DATA_MOUSE)
+    )
+
 endmodule
