@@ -1,0 +1,17 @@
+00  // [0x00] X = 0
+00  // [0x01] Y = 0
+00  // [0x02] pixel
+01  // [0x03] x_even = 1
+01  // [0x04] y_even = 1
+00  // [0x05] const 0
+01  // [0x06] const 1
+A0  // [0x07] X_limit = 160
+78  // [0x08] Y_limit = 120
+00  // [0x09] temp (Y<<1)
+00  // [0x0A] timer_count = 0
+0A  // [0x0B] timer_limit = 10
+FF  // [0x0C] White BG 0
+AA  // [0x0D] Blue FG 0
+15  // [0x0E] Red BG 1
+00  // [0x0F] Black FG 1
+00  // [0x10] Colour value toggle

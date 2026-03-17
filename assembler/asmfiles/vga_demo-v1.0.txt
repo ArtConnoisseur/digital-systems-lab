@@ -1,0 +1,266 @@
+// ==== INIT - load constants, zero state (0x00) ====
+00  // [0x00] const 0
+05
+02  // [0x02] disable timer interrupt
+F3
+02  // [0x04] X = 0
+00
+02  // [0x06] Y = 0
+01
+00  // [0x08] const 1
+06
+02  // [0x0A] x_even = 1
+03
+02  // [0x0C] y_even = 1
+04
+// ==== Y_LOOP - reset X and x_even each row (0x0E) ====
+00  // [0x0E] const 0
+05
+02  // [0x10] X = 0
+00
+00  // [0x12] const 1
+06
+02  // [0x14] x_even = 1
+03
+// ==== X_LOOP - write pixel (0x16) ====
+00  // [0x16] y_even
+04
+01  // [0x18] x_even
+03
+24  // [0x1A] pixel = y_even * x_even
+02  // [0x1B] save pixel
+02
+00  // [0x1D] X
+00
+02  // [0x1F] VGA X
+B1
+00  // [0x21] Y
+01
+34  // [0x23] A = Y << 1
+02  // [0x24] save Y<<1
+09
+00  // [0x26] pixel
+02
+01  // [0x28] Y<<1
+09
+04  // [0x2A] Y_write = (Y<<1) | pixel
+02  // [0x2B] trigger framebuffer write
+B0
+00  // [0x2D] X
+00
+54  // [0x2F] X++
+02  // [0x30] save X
+00
+01  // [0x32] X_limit = 160
+07
+96  // [0x34] if X==160 goto NEXT_Y
+38
+07  // [0x36] loop back to X_LOOP
+16
+// ==== NEXT_Y - increment Y, loop or finish (0x38) ====
+00  // [0x38] Y
+01
+54  // [0x3A] Y++
+02  // [0x3B] save Y
+01
+01  // [0x3D] Y_limit = 120
+08
+96  // [0x3F] if Y==120 goto DONE
+43
+07  // [0x41] loop back to Y_LOOP
+0E
+// ==== DONE - re-enable timer, go idle (0x43) ====
+00  // [0x43] const 1
+06
+02  // [0x45] re-enable timer interrupt
+F3
+08  // [0x47] goto idle
+// Pad 0x48–0x6F
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+// ==== TIMER_HANDLER (0x70) ====
+00  // [0x70] timer_count
+0A
+54  // [0x72] count++
+02  // [0x73] save count
+0A
+01  // [0x75] timer_limit = 10
+0B
+96  // [0x77] if count==10 goto TRIGGER
+7B
+08  // [0x79] count not reached
+// TRIGGER_COLOUR
+00  // [0x7A] const 0
+05
+02  // [0x7C] reset count
+0A
+00  // [0x7E] colour_toggle
+10
+01  // [0x80] const 1
+06
+96  // [0x82] if toggle==1 goto branch2
+86
+00  // [0x84] White=0xFF
+0C
+02  // [0x86] BG = White
+B2
+00  // [0x88] Teal=0x0F
+0D
+02  // [0x8A] FG = Teal
+B2
+00  // [0x8C] const 1
+06
+02  // [0x8E] toggle = 1
+10
+08  // [0x90] goto idle
+00  // [0x91] Red=0x15
+0E
+02  // [0x93] BG = Red
+B2
+00  // [0x95] Black=0x00
+0F
+02  // [0x97] FG = Black
+B2
+00  // [0x99] const 0
+05
+02  // [0x9B] toggle = 0
+10
+08  // [0x9D] goto idle
+// Pad 0x9E–0xFD
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+// ==== Interrupt vectors (0xFE) ====
+70  // [0xFE] timer handler at 0x70
+08  // [0xFF] mouse -> GOTO_IDLE
