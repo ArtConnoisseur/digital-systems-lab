@@ -75,7 +75,7 @@ B0
 02  // [0x45] re-enable timer interrupt
 F3
 08  // [0x47] goto idle
-// Pad 0x48–0x6F
+// Pad 0x48-0x6F
 08
 08
 08
@@ -164,7 +164,7 @@ B2
 02  // [0x9B] toggle = 0
 10
 08  // [0x9D] goto idle
-// Pad 0x9E–0xFD
+// Pad 0x9E�0xFD
 08
 08
 08

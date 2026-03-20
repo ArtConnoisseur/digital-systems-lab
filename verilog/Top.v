@@ -129,6 +129,6 @@ module TopLevel(
         .BUS_INTERRUPT_ACK(BusInterruptsAck),
         .CLK_MOUSE(CLK_MOUSE),
         .DATA_MOUSE(DATA_MOUSE)
-    )
+    );
 
 endmodule
