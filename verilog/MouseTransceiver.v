@@ -144,7 +144,7 @@ wire signed [8:0] Dx_signed = $signed({DxRaw[7], DxRaw});
 wire signed [8:0] Dy_signed = $signed({DyRaw[7], DyRaw});
 
 // Compute next position in signed domain (sensitivity reduced by >>3)
-wire signed [9:0] next_x = $signed({1'b0, MouseX}) + (Dx_signed >>> 3);
+wire signed [9:0] next_x = $signed({1'b0, MouseX}) - (Dx_signed >>> 3);
 wire signed [9:0] next_y = $signed({1'b0, MouseY}) + (Dy_signed >>> 3);
 
 always @(posedge CLK) begin
