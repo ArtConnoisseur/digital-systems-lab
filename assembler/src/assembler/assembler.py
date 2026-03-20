@@ -52,11 +52,10 @@ class Mnemonics:
     mouse_y:       int = 0xA2
 
     # VGA registers  (write Y<<1|pixel to B0 to trigger framebuffer write)
-    vga_x:         int = 0xB0
-    vga_y:         int = 0xB1
-    vga_pixel:     int = 0xB2
-    vga_fg:        int = 0xB3
-    vga_bg:        int = 0xB4
+    vga_pixel: int = 0xB0
+    vga_x:     int = 0xB1
+    vga_y:     int = 0xB2
+    vga_color: int = 0xB3
 
     # Timer registers
     timer_value:   int = 0xF0

@@ -88,13 +88,18 @@ end
 
 // Interrupt generation: raise interrupt when mouse movement is detected
 // (either DX or DY is non-zero). Cleared when processor acknowledges.
+reg [7:0] prev_x, prev_y;
+
 always @(posedge CLK) begin
+    prev_x <= MouseX;
+    prev_y <= MouseY;
+
     if (RESET)
         BUS_INTERRUPT_RAISE <= 1'b0;
-    else if (MouseDX != 8'h00 || MouseDY != 8'h00)
-        BUS_INTERRUPT_RAISE <= 1'b1;       // Movement detected
     else if (BUS_INTERRUPT_ACK)
-        BUS_INTERRUPT_RAISE <= 1'b0;       // Processor acknowledged
+        BUS_INTERRUPT_RAISE <= 1'b0;
+    else if (MouseX != prev_x || MouseY != prev_y)
+        BUS_INTERRUPT_RAISE <= 1'b1;
 end
 
 endmodule
