@@ -1,0 +1,5 @@
+00 // [00] const_0
+01 // [01] const_1
+80 // [02] mouse_x
+60 // [03] mouse_y
+00 // [04] pixel_data: Previous Pixel Data Cache

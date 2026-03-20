@@ -1,0 +1,5 @@
+00 // [00] const_0
+01 // [01] const_1
+80 // [02] const_msb_1 - used to set FG
+00 // [03] x
+00 // [04] y

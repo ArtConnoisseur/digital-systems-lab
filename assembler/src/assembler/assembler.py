@@ -13,10 +13,10 @@ class RAMVariable:
 class RAM:
     """Keeps track of 'variables' defined as a part of a given assembly program"""
     def __init__(self):
-        self.curr_address : int = 0x00
-        self.variables : list[RAMVariable] = []
+        self.curr_address   : int               = 0x00
+        self.variables      : list[RAMVariable] = []
 
-    def create_variable(self, byte: int, name: str) -> int:
+    def var(self, byte: int, name: str) -> int:
         new_var : RAMVariable = RAMVariable(
             byte = byte,
             addr = self.curr_address,
@@ -28,10 +28,7 @@ class RAM:
         return new_var.addr
 
     def create_file(self, path: str):
-        if not path[-3:] == ".txt":
-            path += ".txt"
-
-        with open(path, "w") as f:
+        with open(path, "w+") as f:
             for var in self.variables:
                 line = f"{var.byte:02X} // [{var.addr:02X}] {var.name}"
                 f.write(line + "\n")
@@ -55,9 +52,11 @@ class Mnemonics:
     mouse_y:       int = 0xA2
 
     # VGA registers  (write Y<<1|pixel to B0 to trigger framebuffer write)
-    vga_write:     int = 0xB0
-    vga_x:         int = 0xB1
-    vga_config:    int = 0xB2
+    vga_x:         int = 0xB0
+    vga_y:         int = 0xB1
+    vga_pixel:     int = 0xB2
+    vga_fg:        int = 0xB3
+    vga_bg:        int = 0xB4
 
     # Timer registers
     timer_value:   int = 0xF0
@@ -90,20 +89,36 @@ class Assembler:
     A: int = 0
     B: int = 1
 
-    def __init__(self, ram):
+    def __init__(self,
+        name: str,
+        ram: RAM
+    ):
         # Mix of Instruction objects and plain strings (section comments)
         self.instructions: list[Instruction | str] = []
+        self.name = name
         self.ram = ram
+        self.version = 1.0
 
     # ── Address tracking ──────────────────────────────────────────────────────
 
     def here(self) -> int:
         """Return the current byte address (sum of all emitted instruction sizes)."""
         return sum(i.size for i in self.instructions if isinstance(i, Instruction))
+    
+    def reserve_branch(self, kind: str, comment: str = "") -> int:
+        """Emit a branch with placeholder 0x00, return its index for later patching."""
+        op = {"breq": 0x96, "bgtq": 0xA6, "bltq": 0xB6, "goto": 0x07}[kind]
+        idx = len(self.instructions)
+        self.instructions.append(Instruction(bytes=[op, 0x00], comment=comment))
+        return idx
+
+    def patch(self, idx: int, addr: int):
+        """Patch the address byte of a previously reserved branch."""
+        self.instructions[idx].bytes[1] = addr
 
     # ── Output ────────────────────────────────────────────────────────────────
 
-    def create_file(self, name: str, version: str):
+    def create_file(self, version: str):
         """
         Serialise all instructions to a hex text file compatible with
         Verilog's $readmemh directive and matching the sample format:
@@ -129,18 +144,24 @@ class Assembler:
 
         file_string = "\n".join(lines)
 
-        os.makedirs("asmfiles", exist_ok=True)
-        path = f"asmfiles/{name}-v{version}.txt"
-        with open(path, "w") as f:
+        os.makedirs("output", exist_ok=True)
+
+        ram_path = f"output/{self.name}/v{version}/{self.name}_RAM_Demo.txt"
+        os.makedirs(os.path.dirname(ram_path), exist_ok=True)
+        self.ram.create_file(ram_path)
+
+        rom_path = f"output/{self.name}/v{version}/{self.name}_ROM_Demo.txt"
+        os.makedirs(os.path.dirname(rom_path), exist_ok=True)
+        with open(rom_path, "w") as f:
             f.write(file_string)
 
-        print(f"Written to {path}\n\n{file_string}")
+        print(f"Written to \n{rom_path}\n{ram_path}")
 
     # ── Comments ──────────────────────────────────────────────────────────────
 
     def section_comment(self, comment: str):
         """Emit a section-divider comment  //  ==== LABEL (0xAB) ===="""
-        self.instructions.append(f"// ==== {comment} (0x{self.here():02X}) ====")
+        self.instructions.append(f"\n// ==== {comment} (0x{self.here():02X}) ====")
 
     def inline_comment(self, comment: str):
         """Emit a standalone comment line (no instruction bytes)."""
@@ -301,6 +322,26 @@ class Assembler:
             comment=comment or f"db 0x{value:02X}",
         ))
 
+    def pad_for(self, lines: int, comment: str = ""):
+        """
+        Fill with GOTO_IDLE bytes for as many lines as given
+        """
+
+        current = self.here() 
+        remaining_lines = 255 - current 
+
+        if remaining_lines < lines:
+            raise ValueError(
+                f"pad(Cannot add {lines} of code as only {remaining_lines} of space left)"
+            )
+        
+        self.section_comment(f"Pad for {lines}. Comment: {comment}")
+        
+        self.instructions.append(Instruction(
+            bytes=[0x08] * lines,
+            comment="",   # individual pad bytes get no inline comment
+        ))
+
     def pad_to(self, addr: int, comment: str = ""):
         """
         Fill with GOTO_IDLE bytes (0x08) until the address counter reaches addr.
@@ -314,7 +355,7 @@ class Assembler:
         count = addr - current
         if count == 0:
             return
-        self.inline_comment(f"Pad 0x{current:02X}–0x{addr - 1:02X}")
+        self.section_comment(f"Pad 0x{current:02X} to 0x{addr - 1:02X}. Comment: {comment}")
         self.instructions.append(Instruction(
             bytes=[0x08] * count,
             comment="",   # individual pad bytes get no inline comment
