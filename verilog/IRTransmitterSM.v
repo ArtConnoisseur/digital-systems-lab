@@ -9,34 +9,135 @@ module IRTransmitterSM(
     output      IR_LED
 );
 
-    /*
-    Generate the pulse signal here from the main clock running at 50MHz to generate the right frequency for
-    the car in question e.g. 40KHz for BLUE coded cars
-    */
+    // 38KHz carrier generator (Yellow-coded car)
+    // CLK?10ns, Gen: 1 / 38k = 26.31us
+    // 100MHz / 38KHz = 2632 cycles per period
+    // Toggle every 1316 cycles -> half-period counter
+    parameter HALF_PERIOD = 1316;
 
-    /*
-    ....................
-    FILL IN THIS AREA
-    ...................
-    */
+    reg [11:0] PulseCounter;
+    reg Carrier;
 
-    /*
-    Simple state machine to generate the states of the packet i.e. Start, Gaps, Right Assert or De-Assert, Left
-    Assert or De-Assert, Backward Assert or De-Assert, and Forward Assert or De-Assert
-    */
+    always @(posedge CLK) begin
+        if (RESET) begin
+            PulseCounter <= 0;
+            Carrier      <= 0;
+        end else if (PulseCounter == HALF_PERIOD - 1) begin
+            PulseCounter <= 0;
+            Carrier      <= ~Carrier;
+        end else begin
+            PulseCounter <= PulseCounter + 1;
+        end
+    end
 
-    /*
-    ....................
-    FILL IN THIS AREA
-    ...................
-    */
+    // Packet state machine
+    // Packet structure (pulse counts at 38KHz):
+    //   Start(88) Gap(40) CarSelect(22) Gap(40)
+    //   Right(44/22) Gap(40) Left(44/22) Gap(40)
+    //   Backward(44/22) Gap(40) Forward(44/22)
+    //
+    // COMMAND[0] = Right
+    // COMMAND[1] = Left
+    // COMMAND[2] = Backward
+    // COMMAND[3] = Forward
 
-    // Finally, tie the pulse generator with the packet state to generate IR_LED
+    // States
+    localparam IDLE        = 4'd0;
+    localparam START       = 4'd1;
+    localparam GAP_CS      = 4'd2;
+    localparam CAR_SELECT  = 4'd3;
+    localparam GAP_R       = 4'd4;
+    localparam RIGHT       = 4'd5;
+    localparam GAP_L       = 4'd6;
+    localparam LEFT        = 4'd7;
+    localparam GAP_B       = 4'd8;
+    localparam BACKWARD    = 4'd9;
+    localparam GAP_F       = 4'd10;
+    localparam FORWARD     = 4'd11;
 
-    /*
-    ....................
-    FILL IN THIS AREA
-    ...................
-    */
+    reg [3:0]  State;
+    reg [9:0]  PulseCount;     // Counts carrier periods within each burst/gap
+    reg        BurstEnable;    // High during burst states, low during gaps
+    reg        CarrierEdgePrev;
+
+    // Detect rising edge of carrier to count full carrier periods
+    wire CarrierEdge = Carrier & ~CarrierEdgePrev;
+
+    always @(posedge CLK) begin
+        if (RESET)
+            CarrierEdgePrev <= 0;
+        else
+            CarrierEdgePrev <= Carrier;
+    end
+
+    // Target pulse count for the current state
+    reg [9:0] TargetCount;
+    always @(*) begin
+        case (State)
+            START:      TargetCount = 88;
+            GAP_CS:     TargetCount = 40;
+            CAR_SELECT: TargetCount = 22;
+            GAP_R:      TargetCount = 40;
+            RIGHT:      TargetCount = COMMAND[0] ? 44 : 22;
+            GAP_L:      TargetCount = 40;
+            LEFT:       TargetCount = COMMAND[1] ? 44 : 22;
+            GAP_B:      TargetCount = 40;
+            BACKWARD:   TargetCount = COMMAND[2] ? 44 : 22;
+            GAP_F:      TargetCount = 40;
+            FORWARD:    TargetCount = COMMAND[3] ? 44 : 22;
+            default:    TargetCount = 0;
+        endcase
+    end
+
+    always @(posedge CLK) begin
+        if (RESET) begin
+            State       <= IDLE;
+            PulseCount  <= 0;
+            BurstEnable <= 0;
+        end else begin
+            case (State)
+                IDLE: begin
+                    BurstEnable <= 0;
+                    if (SEND_PACKET) begin
+                        State       <= START;
+                        PulseCount  <= 0;
+                        BurstEnable <= 1;
+                    end
+                end
+
+                default: begin
+                    if (CarrierEdge) begin
+                        if (PulseCount == TargetCount - 1) begin
+                            // Current state finished, advance to next
+                            PulseCount <= 0;
+                            case (State)
+                                START:      begin State <= GAP_CS;     BurstEnable <= 0; end
+                                GAP_CS:     begin State <= CAR_SELECT; BurstEnable <= 1; end
+                                CAR_SELECT: begin State <= GAP_R;      BurstEnable <= 0; end
+                                GAP_R:      begin State <= RIGHT;      BurstEnable <= 1; end
+                                RIGHT:      begin State <= GAP_L;      BurstEnable <= 0; end
+                                GAP_L:      begin State <= LEFT;       BurstEnable <= 1; end
+                                LEFT:       begin State <= GAP_B;      BurstEnable <= 0; end
+                                GAP_B:      begin State <= BACKWARD;   BurstEnable <= 1; end
+                                BACKWARD:   begin State <= GAP_F;      BurstEnable <= 0; end
+                                GAP_F:      begin State <= FORWARD;    BurstEnable <= 1; end
+                                FORWARD:    begin State <= IDLE;       BurstEnable <= 0; end
+                                default:    begin State <= IDLE;       BurstEnable <= 0; end
+                            endcase
+                        end else begin
+                            PulseCount <= PulseCount + 1;
+                        end
+                    end
+                end
+            endcase
+        end
+    end
+
+    // =========================================================
+    // Output: IR_LED = carrier AND burst enable
+    // During burst states the LED pulses at 38KHz;
+    // during gaps and idle it stays off.
+    // =========================================================
+    assign IR_LED = Carrier & BurstEnable;
 
 endmodule
