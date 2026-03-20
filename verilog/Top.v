@@ -53,7 +53,18 @@ module TopLevel(
         // VGA Ports
         output          HS,
         output          VS,
-        output  [11:0]  COLOUR_OUT
+        output  [11:0]  COLOUR_OUT,
+
+        // Mouse Ports
+        inout CLK_MOUSE,
+        inout DATA_MOUSE,
+
+        // 7-segment display output
+        output [7:0] HEX_OUT,           //
+        output [3:0] SEG_SELECT_OUT,    //
+
+        // LED output
+        output [7:0] LED                // 8-bit LED
     );
 
     // Wires and registers to connect various parts of the project
@@ -125,10 +136,33 @@ module TopLevel(
         .BUS_DATA(BusData),
         .BUS_ADDR(BusAddr),
         .BUS_WE(BusWE),
-        .BUS_INTERRUPT_RAISE(BusInterruptsRaise),
-        .BUS_INTERRUPT_ACK(BusInterruptsAck),
+        .BUS_INTERRUPT_RAISE(BusInterruptsRaise[0]),
+        .BUS_INTERRUPT_ACK(BusInterruptsAck[0]),
         .CLK_MOUSE(CLK_MOUSE),
         .DATA_MOUSE(DATA_MOUSE)
-    )
+    );
+
+    // LED Peripheral (Address: 0xC0, write-only)
+    // Directly drives the 8 onboard LEDs.
+    LED_Peripheral led(
+        .CLK(CLK),
+        .RESET(RESET),
+        .BUS_DATA(BusData),
+        .BUS_ADDR(BusAddr),
+        .BUS_WE(BusWE),
+        .LED(LED)
+    );
+
+    // 7-Segment Display Peripheral (Address: 0xD0-0xD1, write-only)
+    // Drives a 4-digit multiplexed 7-segment display.
+    SevenSeg_Peripheral sevenseg(
+        .CLK(CLK),
+        .RESET(RESET),
+        .BUS_DATA(BusData),
+        .BUS_ADDR(BusAddr),
+        .BUS_WE(BusWE),
+        .HEX_OUT(HEX_OUT),
+        .SEG_SELECT_OUT(SEG_SELECT_OUT)
+    );
 
 endmodule

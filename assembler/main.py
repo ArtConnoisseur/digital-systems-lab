@@ -6,7 +6,7 @@ if __name__ == "__main__":
     A, B = Assembler.A, Assembler.B
 
     # --- INIT (0x00) ---
-    asm.section_comment("INIT - load constants, zero state")
+    asm.section_comment("INIT - load constants")
     asm.load(A, 0x05, "const 0")
     asm.store(A, M.timer_enable, "disable timer interrupt")
     asm.store(A, 0x00, "X = 0")
@@ -115,4 +115,4 @@ if __name__ == "__main__":
     asm.db(0x70, "timer handler at 0x70")
     asm.db(0x08, "mouse -> GOTO_IDLE")
 
-    asm.create_file("vga_demo", "1.0")
+    asm.create_file("final_demo", "1.0")

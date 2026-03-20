@@ -1,4 +1,4 @@
-// ==== INIT - load constants, zero state (0x00) ====
+// ==== INIT - load constants (0x00) ====
 00  // [0x00] const 0
 05
 02  // [0x02] disable timer interrupt
