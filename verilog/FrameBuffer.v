@@ -83,7 +83,11 @@ module FrameBuffer(
     // and X is the offset in that row that is being adressed.
 
     parameter FRAME_SIZE = X_RES * Y_RES;
-    reg frame [0 : FRAME_SIZE - 1];
+    (* ram_style = "distributed" *) reg [0:0] frame [0 : FRAME_SIZE - 1];
+
+    // The grid to be displayed along with the labels of each grid part
+    initial
+        $readmemb("Frame_Buffer_Init.mem", frame);
 
     // The code block below implements the frame buffer logic for port A
 

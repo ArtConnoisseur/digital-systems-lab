@@ -2,6 +2,40 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 import os
 
+# ── RAM ───────────────────────────────────────────────────────────────────────
+
+@dataclass
+class RAMVariable:
+    byte : int = 0x00
+    addr : int = 0x00
+    name : str = ""
+
+class RAM:
+    """Keeps track of 'variables' defined as a part of a given assembly program"""
+    def __init__(self):
+        self.curr_address : int = 0x00
+        self.variables : list[RAMVariable] = []
+
+    def create_variable(self, byte: int, name: str) -> int:
+        new_var : RAMVariable = RAMVariable(
+            byte = byte,
+            addr = self.curr_address,
+            name = name
+        )
+        self.variables.append(new_var)
+        self.curr_address += 1
+
+        return new_var.addr
+
+    def create_file(self, path: str):
+        if not path[-3:] == ".txt":
+            path += ".txt"
+
+        with open(path, "w") as f:
+            for var in self.variables:
+                line = f"{var.byte:02X} // [{var.addr:02X}] {var.name}"
+                f.write(line + "\n")
+
 
 # ── Peripheral / memory map constants ─────────────────────────────────────────
 
@@ -56,9 +90,10 @@ class Assembler:
     A: int = 0
     B: int = 1
 
-    def __init__(self):
+    def __init__(self, ram):
         # Mix of Instruction objects and plain strings (section comments)
         self.instructions: list[Instruction | str] = []
+        self.ram = ram
 
     # ── Address tracking ──────────────────────────────────────────────────────
 
