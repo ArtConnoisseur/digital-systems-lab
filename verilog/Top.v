@@ -130,7 +130,7 @@ module TopLevel(
     );
 
     // Mouse Peripheral
-    Mouse_Peripheral(
+    Mouse_Peripheral mouse_inst (
         .CLK(CLK),
         .RESET(RESET),
         .BUS_DATA(BusData),
