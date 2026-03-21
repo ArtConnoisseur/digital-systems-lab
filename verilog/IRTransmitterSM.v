@@ -10,7 +10,7 @@ module IRTransmitterSM(
 );
 
     // 38KHz carrier generator (Yellow-coded car)
-    // CLK?10ns, Gen: 1 / 38k = 26.31us
+    // CLK = 10ns, Gen: 1 / 38k = 26.31us
     // 100MHz / 38KHz = 2632 cycles per period
     // Toggle every 1316 cycles -> half-period counter
     parameter HALF_PERIOD = 1316;
