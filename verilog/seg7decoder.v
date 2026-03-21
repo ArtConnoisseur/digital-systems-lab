@@ -39,8 +39,8 @@ module seg7decoder(
 
 			4'b1000:	HEX_OUT[6:0] <= 7'b0000000; // 8
 			4'b1001:	HEX_OUT[6:0] <= 7'b0011000; // 9
-			4'b1010:	HEX_OUT[6:0] <= 7'b0101111; // r  (g+e ON)
-			4'b1011:	HEX_OUT[6:0] <= 7'b0000011; // B
+			4'b1010:	HEX_OUT[6:0] <= 7'b0001000; // A  (a+b+c+e+f+g ON)
+			4'b1011:	HEX_OUT[6:0] <= 7'b0000000; // B  (all segments ON, same as 8)
 
 			4'b1100:	HEX_OUT[6:0] <= 7'b1000110; // C
 			4'b1101:	HEX_OUT[6:0] <= 7'b1000111; // L  (f+e+d ON)
