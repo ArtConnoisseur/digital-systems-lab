@@ -1,0 +1,22 @@
+00 // [00] const_0
+01 // [01] const_1
+00 // [02] pixel_data: Previous Pixel Data Cache
+28 // [03] const_40:  Y threshold Backward  (MouseY < 40)
+35 // [04] const_53:  X threshold Left      (MouseX < 53)
+4F // [05] const_79:  Y threshold Forward   (MouseY > 79)
+6A // [06] const_106: X threshold Right     (MouseX > 106)
+00 // [07] dir_fwd:   1 if MouseY > 79
+00 // [08] dir_bwd:   1 if MouseY < 40
+00 // [09] dir_left:  1 if MouseX < 53
+00 // [0A] dir_rgt:   1 if MouseX > 106
+00 // [0B] ir_cmd:    Accumulated IR command byte
+EC // [0C] disp_c:  7-seg code for Centre    (_C)
+EF // [0D] disp_f:  7-seg code for Forward   (_F)
+EB // [0E] disp_b:  7-seg code for Backward  (_b)
+EA // [0F] disp_r:  7-seg code for Right     (_r)
+ED // [10] disp_l:  7-seg code for Left      (_L)
+FA // [11] disp_fr: 7-seg code for Fwd+Right (Fr)
+FD // [12] disp_fl: 7-seg code for Fwd+Left  (FL)
+BA // [13] disp_br: 7-seg code for Bwd+Right (br)
+BD // [14] disp_bl: 7-seg code for Bwd+Left  (bL)
+00 // [15] red

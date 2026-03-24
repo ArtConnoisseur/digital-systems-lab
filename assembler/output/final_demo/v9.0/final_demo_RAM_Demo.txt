@@ -1,0 +1,55 @@
+00 // [00] const_0
+01 // [01] const_1
+00 // [02] pixel_data: Previous Pixel Data Cache
+28 // [03] const_40:  Y threshold Backward  (MouseY < 40)
+35 // [04] const_53:  X threshold Left      (MouseX < 53)
+4F // [05] const_79:  Y threshold Forward   (MouseY > 79)
+6A // [06] const_106: X threshold Right     (MouseX > 106)
+00 // [07] dir_fwd:   1 if MouseY > 79
+00 // [08] dir_bwd:   1 if MouseY < 40
+00 // [09] dir_left:  1 if MouseX < 53
+00 // [0A] dir_rgt:   1 if MouseX > 106
+00 // [0B] ir_cmd:    Accumulated IR command byte
+EC // [0C] disp_c:  7-seg code for Centre    (_C)
+EF // [0D] disp_f:  7-seg code for Forward   (_F)
+EB // [0E] disp_b:  7-seg code for Backward  (_b)
+EA // [0F] disp_r:  7-seg code for Right     (_r)
+ED // [10] disp_l:  7-seg code for Left      (_L)
+FA // [11] disp_fr: 7-seg code for Fwd+Right (Fr)
+FD // [12] disp_fl: 7-seg code for Fwd+Left  (FL)
+BA // [13] disp_br: 7-seg code for Bwd+Right (br)
+BD // [14] disp_bl: 7-seg code for Bwd+Left  (bL)
+00 // [15] bg_val_00: black         (R=0,G=0,B=0)
+80 // [16] bg_val_01: dark red      (R=4,G=0,B=0)
+08 // [17] bg_val_02: dark green    (R=0,G=2,B=0)
+02 // [18] bg_val_03: dark blue     (R=0,G=0,B=2)
+82 // [19] bg_val_04: dark purple   (R=4,G=0,B=2)
+0A // [1A] bg_val_05: dark teal     (R=0,G=2,B=2)
+88 // [1B] bg_val_06: dark orange   (R=4,G=2,B=0)
+49 // [1C] bg_val_07: dark grey     (R=2,G=2,B=1)
+60 // [1D] bg_val_08: dark maroon   (R=3,G=0,B=0)
+48 // [1E] bg_val_09: dark olive    (R=2,G=2,B=0)
+03 // [1F] bg_val_10: dark navy     (R=0,G=0,B=3)
+64 // [20] bg_val_11: dark brown    (R=3,G=1,B=0)
+42 // [21] bg_val_12: dark indigo   (R=2,G=0,B=2)
+0D // [22] bg_val_13: dark forest   (R=0,G=3,B=1)
+26 // [23] bg_val_14: dark slate    (R=1,G=1,B=2)
+81 // [24] bg_val_15: dark crimson  (R=4,G=0,B=1)
+FF // [25] fg_val_00: white         (R=7,G=7,B=3)
+FC // [26] fg_val_01: light yellow  (R=7,G=7,B=0)
+7C // [27] fg_val_02: light lime    (R=3,G=7,B=0)
+1F // [28] fg_val_03: light cyan    (R=0,G=7,B=3)
+EF // [29] fg_val_04: light pink    (R=7,G=3,B=3)
+5F // [2A] fg_val_05: light aqua    (R=2,G=7,B=3)
+FA // [2B] fg_val_06: light peach   (R=7,G=6,B=2)
+DA // [2C] fg_val_07: light grey    (R=6,G=6,B=2)
+F2 // [2D] fg_val_08: light salmon  (R=7,G=4,B=2)
+BC // [2E] fg_val_09: lt yellow-grn (R=5,G=7,B=0)
+5B // [2F] fg_val_10: light sky blu (R=2,G=6,B=3)
+F5 // [30] fg_val_11: light tan     (R=7,G=5,B=1)
+D3 // [31] fg_val_12: lt lavender   (R=6,G=4,B=3)
+7E // [32] fg_val_13: light mint    (R=3,G=7,B=2)
+9B // [33] fg_val_14: light ice     (R=4,G=6,B=3)
+EE // [34] fg_val_15: light rose    (R=7,G=3,B=2)
+15 // [35] BG Base Reference Address
+25 // [36] FG Base Reference Address

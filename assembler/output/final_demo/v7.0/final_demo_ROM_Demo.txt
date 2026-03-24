@@ -1,0 +1,278 @@
+08  // [0x00] Start in IDLE mode
+
+// ==== Mouse ISR (0x01) ====
+00  // [0x01] Load cached pixel value
+02
+02  // [0x03] Restore pixel at old X,Y
+B0
+00  // [0x05] Load MouseX from peripheral
+A1
+02  // [0x07] Set VGA X address
+B1
+00  // [0x09] Load MouseY from peripheral
+A2
+02  // [0x0B] Set VGA Y address
+B2
+00  // [0x0D] Read pixel at new X,Y
+B0
+02  // [0x0F] Cache it in RAM
+02
+00  // [0x11] Load 1
+01
+02  // [0x13] Draw cursor pixel
+B0
+08  // [0x15] End of Mouse ISR
+
+// ==== Timer ISR (0x16) ====
+00  // [0x16] Load Enable status
+80
+02  // [0x18] Store enable value in IR
+91
+00  // [0x1A] A <- [0x81]
+81
+02  // [0x1C] [0xA5] <- A
+A5
+00  // [0x1E] Load MouseY
+A2
+01  // [0x20] Load 40
+03
+B4  // [0x22] A = (MouseY < 40)
+02  // [0x23] Store DirForward (Y small = Forward)
+07
+00  // [0x25] Load MouseY
+A2
+01  // [0x27] Load 79
+05
+A4  // [0x29] A = (MouseY > 79)
+02  // [0x2A] Store DirBackward (Y large = Backward)
+08
+00  // [0x2C] Load MouseX
+A1
+01  // [0x2E] Load 53
+04
+B4  // [0x30] A = (MouseX < 53)
+02  // [0x31] Store DirLeft
+09
+00  // [0x33] Load MouseX
+A1
+01  // [0x35] Load 106
+06
+A4  // [0x37] A = (MouseX > 106)
+02  // [0x38] Store DirRight
+0A
+00  // [0x3A] Load DirRight (bit 0)
+0A
+02  // [0x3C] ir_cmd = DirRight
+0B
+00  // [0x3E] Load DirLeft
+09
+34  // [0x40] A <<= 1  (bit 1)
+01  // [0x41] Load ir_cmd
+0B
+04  // [0x43] A |= DirLeft<<1
+02  // [0x44] Save ir_cmd
+0B
+00  // [0x46] Load DirBackward
+08
+34  // [0x48] A <<= 1
+34  // [0x49] A <<= 1  (bit 2)
+01  // [0x4A] Load ir_cmd
+0B
+04  // [0x4C] A |= DirBackward<<2
+02  // [0x4D] Save ir_cmd
+0B
+00  // [0x4F] Load DirForward
+07
+34  // [0x51] A <<= 1
+34  // [0x52] A <<= 1
+34  // [0x53] A <<= 1  (bit 3)
+01  // [0x54] Load ir_cmd
+0B
+04  // [0x56] A |= DirForward<<3
+02  // [0x57] Write IR command to peripheral 0x90
+90
+00  // [0x59] Check DirForward
+07
+01  // [0x5B] Load 1
+01
+96  // [0x5D] if Fwd goto IS_FORWARD
+76
+00  // [0x5F] Check DirBackward
+08
+01  // [0x61] Load 1
+01
+96  // [0x63] if Bwd goto IS_BACKWARD
+87
+00  // [0x65] Check DirRight
+0A
+01  // [0x67] Load 1
+01
+96  // [0x69] Centre+Right -> _r
+98
+00  // [0x6B] Check DirLeft
+09
+01  // [0x6D] Load 1
+01
+96  // [0x6F] Centre+Left  -> _L
+9D
+00  // [0x71] Load display code 0xEC (_C)
+0C
+02  // [0x73] Write to 7-seg 0xD0
+D0
+08  // [0x75] End Timer ISR
+
+// ==== IS_FORWARD (0x76) ====
+00  // [0x76] Check DirLeft
+09
+01  // [0x78] Load 1
+01
+96  // [0x7A] Fwd+Left  -> FL
+A2
+00  // [0x7C] Check DirRight
+0A
+01  // [0x7E] Load 1
+01
+96  // [0x80] Fwd+Right -> Fr
+A7
+00  // [0x82] Load display code 0xEF (_F)
+0D
+02  // [0x84] Write to 7-seg 0xD0
+D0
+08  // [0x86] End Timer ISR
+
+// ==== IS_BACKWARD (0x87) ====
+00  // [0x87] Check DirLeft
+09
+01  // [0x89] Load 1
+01
+96  // [0x8B] Bwd+Left  -> bL
+AC
+00  // [0x8D] Check DirRight
+0A
+01  // [0x8F] Load 1
+01
+96  // [0x91] Bwd+Right -> br
+B1
+00  // [0x93] Load display code 0xEB (_b)
+0E
+02  // [0x95] Write to 7-seg 0xD0
+D0
+08  // [0x97] End Timer ISR
+
+// ==== CENTRE_RIGHT (0x98) ====
+00  // [0x98] Load display code 0xEA (_r)
+0F
+02  // [0x9A] Write to 7-seg 0xD0
+D0
+08  // [0x9C] End Timer ISR
+
+// ==== CENTRE_LEFT (0x9D) ====
+00  // [0x9D] Load display code 0xED (_L)
+10
+02  // [0x9F] Write to 7-seg 0xD0
+D0
+08  // [0xA1] End Timer ISR
+
+// ==== FWD_LEFT (0xA2) ====
+00  // [0xA2] Load display code 0xFD (FL)
+12
+02  // [0xA4] Write to 7-seg 0xD0
+D0
+08  // [0xA6] End Timer ISR
+
+// ==== FWD_RIGHT (0xA7) ====
+00  // [0xA7] Load display code 0xFA (Fr)
+11
+02  // [0xA9] Write to 7-seg 0xD0
+D0
+08  // [0xAB] End Timer ISR
+
+// ==== BWD_LEFT (0xAC) ====
+00  // [0xAC] Load display code 0xBD (bL)
+14
+02  // [0xAE] Write to 7-seg 0xD0
+D0
+08  // [0xB0] End Timer ISR
+
+// ==== BWD_RIGHT (0xB1) ====
+00  // [0xB1] Load display code 0xBA (br)
+13
+02  // [0xB3] Write to 7-seg 0xD0
+D0
+08  // [0xB5] End Timer ISR
+
+// ==== Pad 0xB6 to 0xFD. Comment: Pad to Vector Table (0xB6) ====
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+16  // [0xFE] 0xFE: Timer ISR address
+01  // [0xFF] 0xFF: Mouse ISR address

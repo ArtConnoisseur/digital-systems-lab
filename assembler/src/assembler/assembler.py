@@ -26,6 +26,9 @@ class RAM:
         self.curr_address += 1
 
         return new_var.addr
+    
+    def here(self):
+        return self.curr_address
 
     def create_file(self, path: str):
         with open(path, "w+") as f:
@@ -48,19 +51,29 @@ class Mnemonics:
     timer_base:    int = 0xF0
 
     # Switch Registers
-    switch_status_lo: int = 0x80
-    switch_status_hi: int = 0x81 
+    switch_status_car_en:   int = 0x80
+    switch_status_sens:     int = 0x81 
+    switch_status_fg:       int = 0x82 
+    switch_status_bg:       int = 0x83 
+
+    # IR Peripheral 
+    ir_command:     int = 0x90
+    ir_enable:      int = 0x91 
 
     # Mouse registers
-    mouse_status:  int = 0xA0
-    mouse_x:       int = 0xA1
-    mouse_y:       int = 0xA2
+    mouse_status:      int = 0xA0
+    mouse_x:           int = 0xA1
+    mouse_y:           int = 0xA2
+    mouse_dx:          int = 0xA3 
+    mouse_dy:          int = 0xA4
+    mouse_sensitivity: int = 0xA5 
 
     # VGA registers  (write Y<<1|pixel to B0 to trigger framebuffer write)
-    vga_pixel: int = 0xB0
-    vga_x:     int = 0xB1
-    vga_y:     int = 0xB2
-    vga_color: int = 0xB3
+    vga_pixel:     int = 0xB0
+    vga_x:         int = 0xB1
+    vga_y:         int = 0xB2
+    vga_fg:        int = 0xB3
+    vga_bg:        int = 0xB4
 
     # Timer registers
     timer_value:   int = 0xF0
