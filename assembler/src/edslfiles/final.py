@@ -1,4 +1,4 @@
-from src.assembler.assembler import Mnemonics, Assembler, Instruction, RAM
+from src.assembler.assembler import Mnemonics, Assembler, RAM
 
 # ── Setup ─────────────────────────────────────────────────────────────────────
 ram = RAM()

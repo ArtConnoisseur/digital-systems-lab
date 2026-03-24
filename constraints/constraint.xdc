@@ -143,6 +143,13 @@ set_property PACKAGE_PIN U4 [get_ports {SEG_SELECT_OUT[1]}]
 set_property PACKAGE_PIN V4 [get_ports {SEG_SELECT_OUT[2]}]
 set_property PACKAGE_PIN W4 [get_ports {SEG_SELECT_OUT[3]}]
 
+## =====================================================
+## IR Transmitter Pins
+## =====================================================
+
+set_property PACKAGE_PIN G2 [get_ports IR_LED]
+set_property IOSTANDARD LVCMOS33 [get_ports IR_LED]
+
 
 ## =====================================================
 ## Board configuration (required for all Basys3 designs)

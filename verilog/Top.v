@@ -64,7 +64,10 @@ module TopLevel(
         output [3:0] SEG_SELECT_OUT,    //
 
         // LED output
-        output [7:0] LED                // 8-bit LED
+        output [7:0] LED,               // 8-bit LED
+
+        // IR
+        output          IR_LED
     );
 
     // Wires and registers to connect various parts of the project
@@ -163,6 +166,16 @@ module TopLevel(
         .BUS_WE(BusWE),
         .HEX_OUT(HEX_OUT),
         .SEG_SELECT_OUT(SEG_SELECT_OUT)
+    );
+
+    // Infrared Transmitter Peripheral 
+    IR_Peripheral ir_peri_inst (
+        .CLK(CLK), 
+        .RESET(RESET), 
+        .BUS_DATA(BusData),
+        .BUS_ADDR(BusAddr),
+        .BUS_WE(BusWE),
+        .IR_LED(IR_LED)
     );
 
 endmodule

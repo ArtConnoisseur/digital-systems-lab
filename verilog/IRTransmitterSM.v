@@ -13,7 +13,7 @@ module IRTransmitterSM(
     // CLK = 10ns, Gen: 1 / 38k = 26.31us
     // 100MHz / 38KHz = 2632 cycles per period
     // Toggle every 1316 cycles -> half-period counter
-    parameter HALF_PERIOD = 1316;
+    parameter HALF_PERIOD = 1389;
 
     reg [11:0] PulseCounter;
     reg Carrier;
@@ -74,17 +74,17 @@ module IRTransmitterSM(
     reg [9:0] TargetCount;
     always @(*) begin
         case (State)
-            START:      TargetCount = 88;
-            GAP_CS:     TargetCount = 40;
-            CAR_SELECT: TargetCount = 22;
-            GAP_R:      TargetCount = 40;
-            RIGHT:      TargetCount = COMMAND[0] ? 44 : 22;
-            GAP_L:      TargetCount = 40;
-            LEFT:       TargetCount = COMMAND[1] ? 44 : 22;
-            GAP_B:      TargetCount = 40;
-            BACKWARD:   TargetCount = COMMAND[2] ? 44 : 22;
-            GAP_F:      TargetCount = 40;
-            FORWARD:    TargetCount = COMMAND[3] ? 44 : 22;
+            START:      TargetCount = 191;
+            GAP_CS:     TargetCount = 25;
+            CAR_SELECT: TargetCount = 47;
+            GAP_R:      TargetCount = 25;
+            RIGHT:      TargetCount = COMMAND[0] ? 47 : 22;
+            GAP_L:      TargetCount = 25;
+            LEFT:       TargetCount = COMMAND[1] ? 47 : 22;
+            GAP_B:      TargetCount = 25;
+            BACKWARD:   TargetCount = COMMAND[2] ? 47 : 22;
+            GAP_F:      TargetCount = 25;
+            FORWARD:    TargetCount = COMMAND[3] ? 47 : 22;
             default:    TargetCount = 0;
         endcase
     end
