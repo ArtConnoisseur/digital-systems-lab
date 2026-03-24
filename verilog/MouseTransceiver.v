@@ -52,6 +52,9 @@ module MouseTransceiver(
     inout CLK_MOUSE,                // PS/2 clock line
     inout DATA_MOUSE,               // PS/2 data line
 
+    // Sensitivity 
+    input [1:0] SENSITIVITY,
+
     // Required demo outputs
     output reg [7:0] MouseStatus,   // Status Byte
     output reg [7:0] MouseDX,       // X Direction Byte
@@ -162,8 +165,8 @@ wire signed [8:0] Dx_signed = $signed({DxRaw[7], DxRaw});
 wire signed [8:0] Dy_signed = $signed({DyRaw[7], DyRaw});
 
 // Compute next position in signed domain (sensitivity reduced by >>3)
-wire signed [9:0] next_x = $signed({1'b0, MouseX}) + (Dx_signed);
-wire signed [9:0] next_y = $signed({1'b0, MouseY}) - (Dy_signed);
+wire signed [9:0] next_x = $signed({1'b0, MouseX}) + (Dx_signed >>> SENSITIVITY);
+wire signed [9:0] next_y = $signed({1'b0, MouseY}) - (Dy_signed >>> SENSITIVITY);
 
 always @(posedge CLK) begin
     if (RESET) begin

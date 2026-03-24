@@ -72,6 +72,14 @@ module VGABusInterface(
     output          VS          // Vertical Sync Signal
 );
 
+    // Address Parameters
+    parameter  VGA_BASE        = 8'hB0; 
+    localparam X_REF           = VGA_BASE + 1; 
+    localparam Y_REF           = VGA_BASE + 2;
+    localparam PIXEL_DATA_REF  = VGA_BASE + 0;  
+    localparam FG_REF          = VGA_BASE + 3; 
+    localparam BG_REF          = VGA_BASE + 4;  
+
     // Frame buffer control
     reg [7:0] X_ADDR;
     reg [6:0] Y_ADDR;
@@ -80,7 +88,6 @@ module VGABusInterface(
     wire A_DATA_OUT;
 
     // Colour
-    reg colour_toggle;
     reg [7:0] FG;
     reg [7:0] BG;
 
@@ -102,24 +109,18 @@ module VGABusInterface(
             A_DATA_IN     <= 1'b0;
             BG            <= 8'h00;
             FG            <= 8'hFF;
-            colour_toggle <= 0;
         end else begin
             A_WE <= 1'b0;  // deassert every cycle
             if (BUS_WE) begin
                 case (BUS_ADDR)
-                    8'hB0: begin
+                    PIXEL_DATA_REF : begin
                         A_DATA_IN <= BUS_DATA[0];
                         A_WE      <= 1'b1;
                     end
-                    8'hB1: X_ADDR <= BUS_DATA;
-                    8'hB2: Y_ADDR <= BUS_DATA[6:0];
-                    8'hB3: begin
-                        if (colour_toggle == 0)
-                            BG <= BUS_DATA;
-                        else
-                            FG <= BUS_DATA;
-                        colour_toggle <= ~colour_toggle;
-                    end
+                    X_REF:  X_ADDR <= BUS_DATA;
+                    Y_REF:  Y_ADDR <= BUS_DATA[6:0];
+                    FG_REF: FG     <= BUS_DATA; 
+                    BG_REF: BG     <= BUS_DATA;
                     default: ;
                 endcase
             end
@@ -182,11 +183,16 @@ module VGABusInterface(
     reg [7:0] vga_bus_out;
 
     always @(posedge CLK) begin
-        if (!BUS_WE && BUS_ADDR == 8'hB0) begin
-            vga_bus_re  <= 1'b1;
-            vga_bus_out <= {7'b0, A_DATA_OUT};
-        end else
-            vga_bus_re <= 1'b0;
+        if (RESET) begin
+            vga_bus_re <= 0;
+            vga_bus_out <= 8'h00;
+        end else begin
+            if (!BUS_WE && BUS_ADDR == PIXEL_DATA_REF) begin
+                vga_bus_re  <= 1'b1;
+                vga_bus_out <= {7'b0, A_DATA_OUT};
+            end else
+                vga_bus_re <= 1'b0;
+        end
     end
 
     assign BUS_DATA = vga_bus_re ? vga_bus_out : 8'hZZ;

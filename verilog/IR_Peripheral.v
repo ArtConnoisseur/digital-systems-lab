@@ -48,19 +48,29 @@ module IR_Peripheral(
 );
 
     // Parameters
-    parameter BaseAddr = 8'h90;S
-    localparam ENABLE = BaseAddr + 1; 
+    parameter BaseAddr = 8'h90;
+    localparam COMMAND = BaseAddr + 0;  
+    localparam ENABLE  = BaseAddr + 1; 
 
     // Write-only: never drive the bus
     assign BUS_DATA = 8'hZZ;
 
     // Latched command register
     reg [3:0] command;
+    reg enable; 
+
     always @(posedge CLK) begin
-        if (RESET)
+        if (RESET) begin 
             command <= 4'b0000;
-        else if (BUS_WE && BUS_ADDR == BaseAddr)
-            command <= BUS_DATA[3:0];
+            enable  <= 1; 
+        end 
+        else if (BUS_WE && BUS_ADDR[7:4] == 9) begin
+            case (BUS_ADDR)
+                COMMAND : command  <= BUS_DATA[3:0]; 
+                ENABLE  : enable   <= BUS_DATA[0];
+                default : ;
+            endcase
+        end
     end
 
     // 10 Hz tick: 100 MHz / 10 = 10_000_000 cycles
@@ -72,7 +82,7 @@ module IR_Peripheral(
     ) u_10Hz (
         .CLK     (CLK),
         .RESET   (RESET),
-        .ENABLE  (1'b1),
+        .ENABLE  (enable),
         .TRIG_OUT(send_tick),
         .COUNT   ()
     );

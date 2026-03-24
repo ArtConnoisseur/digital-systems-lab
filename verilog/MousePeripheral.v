@@ -31,6 +31,7 @@ Register Map (Base Address: 0xA0, read-only):
    0xA2 (R) : MouseY       - Absolute Y position (0 - 119, clamped)
    0xA3 (R) : MouseDX      - Raw X movement delta (two's complement)
    0xA4 (R) : MouseDY      - Raw Y movement delta (two's complement)
+   0xA5 (R) : Sensitivity  - Sensitivity Value 
 
 Interrupt Behaviour:
 An interrupt is raised whenever mouse movement is detected (DX or DY != 0).
@@ -64,6 +65,9 @@ wire [7:0] MouseDY;        // Raw Y delta
 wire [7:0] MouseX;         // Calculated absolute X position
 wire [7:0] MouseY;         // Calculated absolute Y position
 
+// Senstivity reg 
+reg [1:0] sensitivity;
+
 // Tri-state bus control
 reg [7:0] Out;              // Data to drive onto the bus
 reg MouseBusWE;             // Bus write enable (active when processor reads from this peripheral)
@@ -75,6 +79,7 @@ MouseTransceiver mouse_core(
     .CLK(CLK),
     .CLK_MOUSE(CLK_MOUSE),
     .DATA_MOUSE(DATA_MOUSE),
+    .SENSITIVITY(sensitivity),
     .MouseStatus(MouseStatus),
     .MouseDX(MouseDX),
     .MouseDY(MouseDY),
@@ -82,14 +87,19 @@ MouseTransceiver mouse_core(
     .MouseY(MouseY)
 );
 
+// Sensitivity write logic 
+always @(posedge CLK) begin
+    if (BUS_WE && BUS_ADDR == MouseBaseAddr + 5) 
+        sensitivity <= BUS_DATA[1:0];
+end
+
 // Bus read logic: drive the appropriate register onto BUS_DATA
 // when the processor reads from an address in range [0xA0, 0xA4]
 always @(posedge CLK) begin
     MouseBusWE <= 1'b0;        // Default: do not drive the bus
 
     // Address decoding: respond only to reads within our address range
-    if (BUS_ADDR >= MouseBaseAddr &&
-        BUS_ADDR <= MouseBaseAddr + 8'h04 &&
+    if (BUS_ADDR[7:4] == 4'hA &&
         !BUS_WE) begin
 
 	case (BUS_ADDR)

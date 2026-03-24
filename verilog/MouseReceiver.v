@@ -50,7 +50,7 @@ module MouseReceiver(
     input CLK_MOUSE_IN,
     //Mouse IO - DATA
     input DATA_MOUSE_IN,
-    
+
     //Control
     input READ_ENABLE,				// Enables byte reception
     output [7:0] BYTE_READ,			// Received data byte

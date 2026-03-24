@@ -40,9 +40,11 @@ module SwitchPeripheral (
 ); 
 
     // Parameters 
-    localparam SWITCH_BASE = 8'h80;
-    localparam SWITCH_STATUS_LO = SWITCH_BASE + 0;
-    localparam SWITCH_STATUS_HI = SWITCH_BASE + 1;
+    parameter SWITCH_BASE           = 8'h80;
+    localparam SWITCH_STATUS_CAR_EN = SWITCH_BASE + 0;
+    localparam SWITCH_STATUS_SENS   = SWITCH_BASE + 1;
+    localparam SWITCH_STATUS_FG     = SWITCH_BASE + 2; 
+    localparam SWITCH_STATUS_BG     = SWITCH_BASE + 3; 
 
     // Local registers 
     reg bus_re; 
@@ -51,16 +53,17 @@ module SwitchPeripheral (
     // Handle reading by bus 
     always @(posedge CLK) begin
         if (RESET) begin
-            bus_re <= 0; 
+            bus_re        <= 0; 
             temp_bus_data <= 0; 
         end else begin
             // READ ONLY!!
             if (!BUS_WE && BUS_ADDR[7:4] == 4'h8) begin
                 bus_re <= 1; 
-
                 case (BUS_ADDR)
-                    SWITCH_STATUS_HI : temp_bus_data <= SWITCH[15:8]; 
-                    SWITCH_STATUS_LO : temp_bus_data <= SWITCH[7:0];
+                    SWITCH_STATUS_CAR_EN    : temp_bus_data <= SWITCH[0];
+                    SWITCH_STATUS_SENS      : temp_bus_data <= SWITCH[2:1];
+                    SWITCH_STATUS_FG        : temp_bus_data <= SWITCH[6:3];
+                    SWITCH_STATUS_BG        : temp_bus_data <= SWITCH[10:7];
                 endcase
             end else begin
                 bus_re <= 0; 
