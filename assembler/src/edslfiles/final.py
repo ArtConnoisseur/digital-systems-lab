@@ -103,7 +103,7 @@ asm.shift_left(         "A <<= 1")
 asm.shift_left(         "A <<= 1  (bit 3)")
 asm.load(B, ir_cmd,     "Load ir_cmd")
 asm.add(A,              "A |= DirForward<<3")
-asm.store(A, M.ir_base, "Write IR command to peripheral 0x90")
+ 
 
 # Step 3: Region detection -> write display code to 7-seg (0xD0)
 # digit1=upper nibble, digit0=lower nibble; 0xA=r 0xB=b 0xC=C 0xD=L 0xE=blank 0xF=F

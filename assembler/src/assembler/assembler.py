@@ -39,12 +39,17 @@ class RAM:
 @dataclass
 class Mnemonics:
     # Peripheral base addresses (from Table 1)
+    switch_base:   int = 0x80 
     ir_base:       int = 0x90
     mouse_base:    int = 0xA0
     vga_base:      int = 0xB0
     leds_base:     int = 0xC0
     sevenseg_base: int = 0xD0
     timer_base:    int = 0xF0
+
+    # Switch Registers
+    switch_status_lo: int = 0x80
+    switch_status_hi: int = 0x81 
 
     # Mouse registers
     mouse_status:  int = 0xA0

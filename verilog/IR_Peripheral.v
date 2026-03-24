@@ -47,7 +47,9 @@ module IR_Peripheral(
     output       IR_LED
 );
 
-    parameter BaseAddr = 8'h90;
+    // Parameters
+    parameter BaseAddr = 8'h90;S
+    localparam ENABLE = BaseAddr + 1; 
 
     // Write-only: never drive the bus
     assign BUS_DATA = 8'hZZ;

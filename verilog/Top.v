@@ -178,4 +178,14 @@ module TopLevel(
         .IR_LED(IR_LED)
     );
 
+    // Switch Peripheral Connections
+    SwitchPeripheral switch_peri_inst (
+        .CLK(CLK),
+        .RESET(RESET),
+        .SWITCH(SWITCH),
+        .BUS_WE(BusWE),
+        .BUS_DATA(BusData),
+        .BUS_ADDR(BusAddr)
+    );
+
 endmodule
