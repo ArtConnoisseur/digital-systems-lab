@@ -176,7 +176,7 @@ module IRTransmitterSM(
 
         endcase
     end
-    =
+    
     // Output: LED pulses at 38 kHz during burst states, off during gaps/idle
     assign IR_LED = CurrCarrier & CurrBurstEnable;
 
