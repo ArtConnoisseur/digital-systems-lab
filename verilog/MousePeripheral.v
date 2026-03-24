@@ -1,23 +1,41 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Module Name: Mouse_Peripheral
+// Company:
+// Engineer:
 //
-// Description:
-//   Bus-attached PS/2 mouse peripheral. This module wraps the MouseTransceiver
-//   core and exposes mouse data through the system's shared tri-state bus.
+// Create Date: 15.03.2026 11:05:07
+// Design Name:
+// Module Name: MousePeripheral
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: See below.
 //
-// Register Map (Base Address: 0xA0, read-only):
-//   0xA0 (R) : MouseStatus  - PS/2 status byte (button states, sign bits, overflow)
-//   0xA1 (R) : MouseX       - Absolute X position (0 - 159, clamped)
-//   0xA2 (R) : MouseY       - Absolute Y position (0 - 119, clamped)
-//   0xA3 (R) : MouseDX      - Raw X movement delta (two's complement)
-//   0xA4 (R) : MouseDY      - Raw Y movement delta (two's complement)
+// Dependencies:
 //
-// Interrupt Behaviour:
-//   An interrupt is raised whenever mouse movement is detected (DX or DY != 0).
-//   The interrupt remains asserted until acknowledged by the processor.
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
 //
 //////////////////////////////////////////////////////////////////////////////////
+
+/*
+Module Name: Mouse_Peripheral
+Description:
+Bus-attached PS/2 mouse peripheral. This module wraps the MouseTransceiver
+core and exposes mouse data through the system's shared tri-state bus.
+
+Register Map (Base Address: 0xA0, read-only):
+   0xA0 (R) : MouseStatus  - PS/2 status byte (button states, sign bits, overflow)
+   0xA1 (R) : MouseX       - Absolute X position (0 - 159, clamped)
+   0xA2 (R) : MouseY       - Absolute Y position (0 - 119, clamped)
+   0xA3 (R) : MouseDX      - Raw X movement delta (two's complement)
+   0xA4 (R) : MouseDY      - Raw Y movement delta (two's complement)
+
+Interrupt Behaviour:
+An interrupt is raised whenever mouse movement is detected (DX or DY != 0).
+The interrupt remains asserted until acknowledged by the processor.
+*/
 
 module Mouse_Peripheral(
     input RESET,                        // Synchronous reset

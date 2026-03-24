@@ -1,27 +1,45 @@
-// MouseReceiver
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company:
+// Engineer:
 //
-// Implements device-to-host PS/2 reception.
-// Data from mouse is sampled on the falling edge of CLK.
+// Create Date: 01.02.2026 13:01:50
+// Design Name:
+// Module Name: MouseReceiver
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: See below.
 //
-// Each frame consists of:
-//   - Start bit (0)
-//   - 8 data bits (LSB first)
-//   - Odd parity bit
-//   - Stop bit (1)
+// Dependencies:
 //
-// Basic error checking is performed.
-// The receiver performs basic error checking on:
-//   - Start bit
-//   - Odd parity bit
-//   - Stop bit
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
 //
-// When a complete byte is received, BYTE_READY is asserted
-// for one system clock cycle, allowing the master FSM to
-// latch the received data.
-//
-// A timeout mechanism is included to recover safely from
-// incomplete or corrupted frames.
-// ============================================================
+//////////////////////////////////////////////////////////////////////////////////
+
+/*
+Implements device-to-host PS/2 reception.
+Data from mouse is sampled on the falling edge of CLK.
+
+Each frame consists of:
+   - Start bit (0)
+   - 8 data bits (LSB first)
+   - Odd parity bit
+   - Stop bit (1)
+
+Basic error checking is performed.
+The receiver performs basic error checking on:
+   - Start bit
+   - Odd parity bit
+   - Stop bit
+
+When a complete byte is received, BYTE_READY is asserted for one system clock cycle, allowing the master FSM to
+latch the received data.
+
+A timeout mechanism is included to recover safely from incomplete or corrupted frames.
+*/
 
 module MouseReceiver(
 	//Standard Inputs

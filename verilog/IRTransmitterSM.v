@@ -1,21 +1,40 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// IRTransmitterSM.v  —  Yellow-coded car IR transmitter state machine
+// Company:
+// Engineer:
 //
-// Carrier frequency : 38 kHz
-//   100 MHz / 38 000 Hz = 2631.6 cycles/period  →  half-period = 1316 cycles
+// Create Date: 20.03.2026 12:32:22
+// Design Name:
+// Module Name: IRTransmitterSM
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: See below.
 //
-// Packet structure (carrier-pulse counts):
-//   Start(88)  Gap(40)  CarSelect(22)  Gap(40)
-//   Right(44/22)  Gap(40)  Left(44/22)  Gap(40)
-//   Backward(44/22)  Gap(40)  Forward(44/22)
+// Dependencies:
 //
-// COMMAND[0] = Right   COMMAND[1] = Left
-// COMMAND[2] = Backward  COMMAND[3] = Forward
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
 //
-// State machine follows the same Curr/Next two-always-block pattern
-// used in the Processor module.
 //////////////////////////////////////////////////////////////////////////////////
+
+/* 
+IRTransmitterSM.v  —  Yellow-coded car IR transmitter state machine
+
+Carrier frequency : 38 kHz
+   100 MHz / 38 000 Hz = 2631.6 cycles/period  →  half-period = 1316 cycles
+
+Packet structure (carrier-pulse counts):
+   Start(88)  Gap(40)  CarSelect(22)  Gap(40)
+   Right(44/22)  Gap(40)  Left(44/22)  Gap(40)
+   Backward(44/22)  Gap(40)  Forward(44/22)
+
+COMMAND[0] = Right   COMMAND[1] = Left
+COMMAND[2] = Backward  COMMAND[3] = Forward
+
+State machine follows the same Curr/Next two-always-block pattern used in the Processor module.
+*/
 
 module IRTransmitterSM(
     input        RESET,
@@ -25,9 +44,7 @@ module IRTransmitterSM(
     output       IR_LED
 );
 
-    // =========================================================
     // Carrier generator  (38 kHz, half-period = 1316 cycles)
-    // =========================================================
     localparam HALF_PERIOD = 1388;   // 100 MHz / 38 kHz / 2
 
     wire CarrierTick;
@@ -62,9 +79,7 @@ module IRTransmitterSM(
 
     wire CarrierRise = CurrCarrier & ~CarrierPrev;
 
-    // =========================================================
     // State encoding
-    // =========================================================
     localparam IDLE       = 4'd0;
     localparam START      = 4'd1;
     localparam GAP_CS     = 4'd2;
@@ -78,9 +93,7 @@ module IRTransmitterSM(
     localparam GAP_F      = 4'd10;
     localparam FORWARD    = 4'd11;
 
-    // =========================================================
     // Curr / Next registers  —  processor-style two-always pattern
-    // =========================================================
     reg [3:0] CurrState,       NextState;
     reg [7:0] CurrPulseCount,  NextPulseCount;
     reg       CurrBurstEnable, NextBurstEnable;

@@ -1,21 +1,40 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
+// Company:
+// Engineer:
+//
+// Create Date: 20.03.2026 12:40:46
+// Design Name:
 // Module Name: IR_Peripheral
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: See below.
 //
-// Description:
-//   Bus-attached wrapper around IRTransmitterSM.
-//   The processor writes a command byte to 0x90 to trigger IR transmission.
+// Dependencies:
 //
-//   Register Map (Base Address: 0x90):
-//     0x90 (W) : command [3:0]
-//                  bit0 = Right
-//                  bit1 = Left
-//                  bit2 = Backward
-//                  bit3 = Forward
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
 //
-//   A 10 Hz counter fires SEND_PACKET once per 100 ms while the stored
-//   command is non-zero.  Write 0x00 to stop transmitting.
 //////////////////////////////////////////////////////////////////////////////////
+
+/* 
+Module Name: IR_Peripheral
+Description:
+Bus-attached wrapper around IRTransmitterSM.
+The processor writes a command byte to 0x90 to trigger IR transmission.
+
+Register Map (Base Address: 0x90):
+0x90 (W) : command [3:0]
+    bit0 = Right
+    bit1 = Left
+    bit2 = Backward
+    bit3 = Forward
+
+A 10 Hz counter fires SEND_PACKET once per 100 ms while the stored
+command is non-zero.  Write 0x00 to stop transmitting.
+*/
 
 module IR_Peripheral(
     input        CLK,

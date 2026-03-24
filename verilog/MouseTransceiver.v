@@ -1,32 +1,50 @@
  `timescale 1ns / 1ps
-// ============================================================
+//////////////////////////////////////////////////////////////////////////////////
+// Company:
+// Engineer:
+//
+// Create Date: 01.02.2026 13:05:51
+// Design Name:
 // Module Name: MouseTransceiver
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: See below.
 //
-// Description:
-//   Complete PS/2 mouse interface module that integrates:
+// Dependencies:
 //
-//     - MouseTransmitter : Sends host-to-device commands (RESET 0xFF, ENABLE 0xF4)
-//     - MouseReceiver    : Receives device-to-host data bytes
-//     - MouseMasterSM    : High-level protocol control FSM
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
 //
-// Functionality:
-//   - Manages bidirectional open-collector PS/2 clock and data lines
-//   - Performs PS/2 clock filtering (8-sample debounce) for noise rejection
-//   - Outputs raw movement data (MouseStatus, MouseDX, MouseDY)
-//   - Computes absolute position (MouseX, MouseY) with clamping to screen bounds
-//
-// Absolute Position Calculation:
-//   - Raw DX/DY deltas are sign-extended to 9 bits (two's complement)
-//   - Sensitivity is reduced by arithmetic right shift (>>>3)
-//   - Result is clamped to [0, MouseLimitX] and [0, MouseLimitY]
-//   - Initial position is set to screen centre (80, 60)
-//
-// PS/2 Clock Filtering:
-//   An 8-bit shift register samples the raw PS/2 clock line.
-//   ClkMouseStable transitions high only after 8 consecutive '1' samples
-//   and low only after 8 consecutive '0' samples, preventing glitches
-//   from reaching the transmitter and receiver modules.
-// ============================================================
+//////////////////////////////////////////////////////////////////////////////////
+
+/*
+Description:
+Complete PS/2 mouse interface module that integrates:
+
+     - MouseTransmitter : Sends host-to-device commands (RESET 0xFF, ENABLE 0xF4)
+     - MouseReceiver    : Receives device-to-host data bytes
+     - MouseMasterSM    : High-level protocol control FSM
+
+Functionality:
+   - Manages bidirectional open-collector PS/2 clock and data lines
+   - Performs PS/2 clock filtering (8-sample debounce) for noise rejection
+   - Outputs raw movement data (MouseStatus, MouseDX, MouseDY)
+   - Computes absolute position (MouseX, MouseY) with clamping to screen bounds
+
+Absolute Position Calculation:
+   - Raw DX/DY deltas are sign-extended to 9 bits (two's complement)
+   - Sensitivity is reduced by arithmetic right shift (>>>3)
+   - Result is clamped to [0, MouseLimitX] and [0, MouseLimitY]
+   - Initial position is set to screen centre (80, 60)
+
+PS/2 Clock Filtering:
+   An 8-bit shift register samples the raw PS/2 clock line.
+   ClkMouseStable transitions high only after 8 consecutive '1' samples
+   and low only after 8 consecutive '0' samples, preventing glitches
+   from reaching the transmitter and receiver modules.
+*/
 module MouseTransceiver(
     input RESET,                    // Reset
     input CLK,                      // System clock

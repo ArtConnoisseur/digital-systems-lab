@@ -1,18 +1,37 @@
-// ============================================================
-// MouseMasterSM
+`timescale 1ns / 1ps
+//////////////////////////////////////////////////////////////////////////////////
+// Company:
+// Engineer:
 //
-// High-level control state machine for PS/2 mouse protocol.
+// Create Date: 29.01.2026 10:25:22
+// Design Name:
+// Module Name: MouseMasterSM
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: See below.
 //
-// Startup sequence:
-//   1) Send RESET (0xFF)
-//   2) Wait for ACK (0xFA)
-//   3) Wait for self-test pass (0xAA)
-//   4) Wait for mouse ID
-//   5) Send ENABLE REPORTING (0xF4)
-//   6) Receive 3-byte movement packets continuously
+// Dependencies:
 //
-// Outputs decoded mouse data and interrupt pulse per packet.
-// ============================================================
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+//
+//////////////////////////////////////////////////////////////////////////////////
+
+/* MouseMasterSM
+High-level control state machine for PS/2 mouse protocol.
+
+Startup sequence:
+   1) Send RESET (0xFF)
+   2) Wait for ACK (0xFA)
+   3) Wait for self-test pass (0xAA)
+   4) Wait for mouse ID
+   5) Send ENABLE REPORTING (0xF4)
+   6) Receive 3-byte movement packets continuously
+
+Outputs decoded mouse data and interrupt pulse per packet.
+*/
 
 module MouseMasterSM(
     input CLK,                  // System clock (100 MHz)

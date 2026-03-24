@@ -1,13 +1,31 @@
 `timescale 1ns / 1ps
-// MouseTransmitter
+//////////////////////////////////////////////////////////////////////////////////
+// Company:
+// Engineer:
 //
-// PS/2 Host-to-Device Transmitter
+// Create Date: 01.02.2026 13:13:21
+// Design Name:
+// Module Name: MouseTransceiver
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: See below.
 //
-// This module implements host-initiated PS/2 communication,
-// where the FPGA acts as the bus master and the mouse is the
-// bus slave.
+// Dependencies:
 //
-// Transmission procedure (PS/2 protocol):
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+//
+//////////////////////////////////////////////////////////////////////////////////
+
+/*
+PS/2 Host-to-Device Transmitter
+
+This module implements host-initiated PS/2 communication,
+where the FPGA acts as the bus master and the mouse is the bus slave.
+
+Transmission procedure (PS/2 protocol):
 //   1) Host pulls CLK line low for at least 100 us to request
 //      transmission.
 //   2) Host pulls DATA low (start bit) and releases CLK.
@@ -19,8 +37,9 @@
 //   5) Device acknowledges by pulling DATA low, then CLK low.
 //   6) Host waits until both lines are released.
 //
-// Data is sampled by the device on rising clock edges,
-// therefore the host updates DATA on falling edges.
+
+Data is sampled by the device on rising clock edges, therefore the host updates DATA on falling edges.
+*/
 
 module MouseTransmitter(
 	//Standard Inputs

@@ -1,23 +1,41 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
+// Company:
+// Engineer:
+//
+// Create Date: 15.03.2026 14:39:09
+// Design Name:
 // Module Name: SevenSeg_Peripheral
+// Project Name:
+// Target Devices:
+// Tool Versions:
+// Description: See below.
 //
-// Description:
-//   Write-only 4-digit 7-segment display peripheral.
-//   The processor writes two bytes to control all four digits:
+// Dependencies:
 //
-//   Register Map (Base Address: 0xD0):
-//     0xD0 (W) : digit0 = BUS_DATA[3:0], digit1 = BUS_DATA[7:4]
-//     0xD1 (W) : digit2 = BUS_DATA[3:0], digit3 = BUS_DATA[7:4]
-//
-//   Each digit is a 4-bit BCD/hex value (0x0 - 0xF).
-//
-//   The display is time-multiplexed: a 16-bit free-running counter
-//   selects one of the four digits at a time. At 100 MHz, the upper
-//   2 bits cycle through all 4 digits at ~1.5 kHz, fast enough to
-//   appear continuous to the human eye.
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
 //
 //////////////////////////////////////////////////////////////////////////////////
+
+/* 
+Module Name: SevenSeg_Peripheral
+Description:
+Write-only 4-digit 7-segment display peripheral.
+The processor writes two bytes to control all four digits:
+
+Register Map (Base Address: 0xD0):
+    0xD0 (W) : digit0 = BUS_DATA[3:0], digit1 = BUS_DATA[7:4]
+    0xD1 (W) : digit2 = BUS_DATA[3:0], digit3 = BUS_DATA[7:4]
+
+    Each digit is a 4-bit BCD/hex value (0x0 - 0xF).
+
+The display is time-multiplexed: a 16-bit free-running counter
+selects one of the four digits at a time. At 100 MHz, the upper
+2 bits cycle through all 4 digits at ~1.5 kHz, fast enough to
+appear continuous to the human eye.
+*/
 
 module SevenSeg_Peripheral(
     input CLK,                      // System clock
