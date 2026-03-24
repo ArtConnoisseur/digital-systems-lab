@@ -13,45 +13,56 @@
 //                  bit2 = Backward
 //                  bit3 = Forward
 //
-//   SEND_PACKET is asserted whenever the stored command is non-zero.
-//   Write 0x00 to stop transmitting.
+//   A 10 Hz counter fires SEND_PACKET once per 100 ms while the stored
+//   command is non-zero.  Write 0x00 to stop transmitting.
 //////////////////////////////////////////////////////////////////////////////////
 
 module IR_Peripheral(
-    input           CLK,
-    input           RESET,
-
+    input        CLK,
+    input        RESET,
     // BUS Interface
-    inout  [7:0]    BUS_DATA,
-    input  [7:0]    BUS_ADDR,
-    input           BUS_WE,
-
+    inout  [7:0] BUS_DATA,
+    input  [7:0] BUS_ADDR,
+    input        BUS_WE,
     // IR output
-    output          IR_LED
+    output       IR_LED
 );
 
-parameter BaseAddr = 8'h90;
+    parameter BaseAddr = 8'h90;
 
-// Write-only: never drive the bus
-assign BUS_DATA = 8'hZZ;
+    // Write-only: never drive the bus
+    assign BUS_DATA = 8'hZZ;
 
-// Latched command register
-reg [3:0] command;
+    // Latched command register
+    reg [3:0] command;
+    always @(posedge CLK) begin
+        if (RESET)
+            command <= 4'b0000;
+        else if (BUS_WE && BUS_ADDR == BaseAddr)
+            command <= BUS_DATA[3:0];
+    end
 
-always @(posedge CLK) begin
-    if (RESET)
-        command <= 4'b0000;
-    else if (BUS_WE && BUS_ADDR == BaseAddr)
-        command <= BUS_DATA[3:0];
-end
+    // 10 Hz tick: 100 MHz / 10 = 10_000_000 cycles
+    wire send_tick;
+    GenericCounter #(
+        .COUNTER_WIDTH(24),       // 2^24 = 16M > 10M
+        .COUNTER_MAX  (9_999_999),
+        .INITIAL_VALUE(0)
+    ) u_10Hz (
+        .CLK     (CLK),
+        .RESET   (RESET),
+        .ENABLE  (1'b1),
+        .TRIG_OUT(send_tick),
+        .COUNT   ()
+    );
 
-// Instantiate IR state machine
-IRTransmitterSM ir_sm (
-    .RESET      (RESET),
-    .CLK        (CLK),
-    .COMMAND    (command),
-    .SEND_PACKET(|command),
-    .IR_LED     (IR_LED)
-);
+    // Instantiate IR state machine
+    IRTransmitterSM ir_sm (
+        .RESET      (RESET),
+        .CLK        (CLK),
+        .COMMAND    (command),
+        .SEND_PACKET(send_tick & |command),
+        .IR_LED     (IR_LED)
+    );
 
 endmodule
