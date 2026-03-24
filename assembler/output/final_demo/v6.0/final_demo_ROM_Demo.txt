@@ -52,9 +52,15 @@ A1
 A4  // [0x2F] A = (MouseX > 106)
 02  // [0x30] Store DirRight
 0A
+<<<<<<< Updated upstream
 00  // [0x32] Load Enable status
 80
 02  // [0x34] Store enable value in IR
+=======
+00  // [0x32] Load mouse enable status
+80
+02  // [0x34] Set Enable to the IR Peripheral
+>>>>>>> Stashed changes
 91
 00  // [0x36] Load DirRight (bit 0)
 0A
@@ -85,6 +91,7 @@ A4  // [0x2F] A = (MouseX > 106)
 01  // [0x50] Load ir_cmd
 0B
 04  // [0x52] A |= DirForward<<3
+<<<<<<< Updated upstream
 02  // [0x53] Write IR command to peripheral 0x90
 90
 00  // [0x55] Check DirForward
@@ -198,6 +205,121 @@ D0
 08  // [0xB1] End Timer ISR
 
 // ==== Pad 0xB2 to 0xFD. Comment: Pad to Vector Table (0xB2) ====
+=======
+00  // [0x53] Check DirForward
+07
+01  // [0x55] Load 1
+01
+96  // [0x57] if Fwd goto IS_FORWARD
+70
+00  // [0x59] Check DirBackward
+08
+01  // [0x5B] Load 1
+01
+96  // [0x5D] if Bwd goto IS_BACKWARD
+81
+00  // [0x5F] Check DirRight
+0A
+01  // [0x61] Load 1
+01
+96  // [0x63] Centre+Right -> _r
+92
+00  // [0x65] Check DirLeft
+09
+01  // [0x67] Load 1
+01
+96  // [0x69] Centre+Left  -> _L
+97
+00  // [0x6B] Load display code 0xEC (_C)
+0C
+02  // [0x6D] Write to 7-seg 0xD0
+D0
+08  // [0x6F] End Timer ISR
+
+// ==== IS_FORWARD (0x70) ====
+00  // [0x70] Check DirLeft
+09
+01  // [0x72] Load 1
+01
+96  // [0x74] Fwd+Left  -> FL
+9C
+00  // [0x76] Check DirRight
+0A
+01  // [0x78] Load 1
+01
+96  // [0x7A] Fwd+Right -> Fr
+A1
+00  // [0x7C] Load display code 0xEF (_F)
+0D
+02  // [0x7E] Write to 7-seg 0xD0
+D0
+08  // [0x80] End Timer ISR
+
+// ==== IS_BACKWARD (0x81) ====
+00  // [0x81] Check DirLeft
+09
+01  // [0x83] Load 1
+01
+96  // [0x85] Bwd+Left  -> bL
+A6
+00  // [0x87] Check DirRight
+0A
+01  // [0x89] Load 1
+01
+96  // [0x8B] Bwd+Right -> br
+AB
+00  // [0x8D] Load display code 0xEB (_b)
+0E
+02  // [0x8F] Write to 7-seg 0xD0
+D0
+08  // [0x91] End Timer ISR
+
+// ==== CENTRE_RIGHT (0x92) ====
+00  // [0x92] Load display code 0xEA (_r)
+0F
+02  // [0x94] Write to 7-seg 0xD0
+D0
+08  // [0x96] End Timer ISR
+
+// ==== CENTRE_LEFT (0x97) ====
+00  // [0x97] Load display code 0xED (_L)
+10
+02  // [0x99] Write to 7-seg 0xD0
+D0
+08  // [0x9B] End Timer ISR
+
+// ==== FWD_LEFT (0x9C) ====
+00  // [0x9C] Load display code 0xFD (FL)
+12
+02  // [0x9E] Write to 7-seg 0xD0
+D0
+08  // [0xA0] End Timer ISR
+
+// ==== FWD_RIGHT (0xA1) ====
+00  // [0xA1] Load display code 0xFA (Fr)
+11
+02  // [0xA3] Write to 7-seg 0xD0
+D0
+08  // [0xA5] End Timer ISR
+
+// ==== BWD_LEFT (0xA6) ====
+00  // [0xA6] Load display code 0xBD (bL)
+14
+02  // [0xA8] Write to 7-seg 0xD0
+D0
+08  // [0xAA] End Timer ISR
+
+// ==== BWD_RIGHT (0xAB) ====
+00  // [0xAB] Load display code 0xBA (br)
+13
+02  // [0xAD] Write to 7-seg 0xD0
+D0
+08  // [0xAF] End Timer ISR
+
+// ==== Pad 0xB0 to 0xFD. Comment: Pad to Vector Table (0xB0) ====
+08
+08
+>>>>>>> Stashed changes
 08
 08
 08

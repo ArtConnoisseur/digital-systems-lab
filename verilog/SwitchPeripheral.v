@@ -62,8 +62,13 @@ module SwitchPeripheral (
                 case (BUS_ADDR)
                     SWITCH_STATUS_CAR_EN    : temp_bus_data <= SWITCH[0];
                     SWITCH_STATUS_SENS      : temp_bus_data <= SWITCH[2:1];
+<<<<<<< Updated upstream
                     SWITCH_STATUS_FG        : temp_bus_data <= SWITCH[6:3];
                     SWITCH_STATUS_BG        : temp_bus_data <= SWITCH[10:7];
+=======
+                    SWITCH_STATUS_FG        : temp_bus_data <= SWITCH[4:3];
+                    SWITCH_STATUS_BG        : temp_bus_data <= SWITCH[7:5];
+>>>>>>> Stashed changes
                 endcase
             end else begin
                 bus_re <= 0; 

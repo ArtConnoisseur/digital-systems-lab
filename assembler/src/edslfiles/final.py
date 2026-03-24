@@ -141,6 +141,11 @@ asm.gt(A,               "A = (MouseX > 106)")
 asm.store(A, dir_rgt,   "Store DirRight")
 
 # Step 2: Build IR command = {Forward(b3), Backward(b2), Left(b1), Right(b0)}
+
+# Switch peripheral handler 
+asm.load(A, M.switch_status_car_en, "Load mouse enable status")
+asm.store(A, M.ir_enable, "Set Enable to the IR Peripheral")
+
 asm.load(A, dir_rgt,    "Load DirRight (bit 0)")
 asm.store(A, ir_cmd,    "ir_cmd = DirRight")
 
@@ -261,6 +266,9 @@ asm.patch(b_bwd_rgt, asm.here())
 asm.section_comment("BWD_RIGHT")
 asm.load(A, disp_br,          "Load display code 0xBA (br)")
 asm.store(A, M.sevenseg_base, "Write to 7-seg 0xD0")
+
+
+
 asm.goto_idle("End Timer ISR")
 
 # ── Vector Table ──────────────────────────────────────────────────────────────

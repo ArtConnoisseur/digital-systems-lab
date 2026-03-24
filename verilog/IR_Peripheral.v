@@ -51,6 +51,9 @@ module IR_Peripheral(
     parameter BaseAddr = 8'h90;
     localparam COMMAND = BaseAddr + 0;  
     localparam ENABLE  = BaseAddr + 1; 
+    parameter BaseAddr = 8'h90;
+    localparam COMMAND = BaseAddr + 0;  
+    localparam ENABLE  = BaseAddr + 1; 
 
     // Write-only: never drive the bus
     assign BUS_DATA = 8'hZZ;
@@ -59,7 +62,10 @@ module IR_Peripheral(
     reg [3:0] command;
     reg enable; 
 
+    reg enable; 
+
     always @(posedge CLK) begin
+        if (RESET) begin 
         if (RESET) begin 
             command <= 4'b0000;
             enable  <= 1; 
@@ -82,6 +88,7 @@ module IR_Peripheral(
     ) u_10Hz (
         .CLK     (CLK),
         .RESET   (RESET),
+        .ENABLE  (enable),
         .ENABLE  (enable),
         .TRIG_OUT(send_tick),
         .COUNT   ()
