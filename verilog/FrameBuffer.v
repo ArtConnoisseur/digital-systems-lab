@@ -89,6 +89,11 @@ module FrameBuffer(
     initial
         $readmemb("Frame_Buffer_Init.mem", frame);
 
+    // Handle reset 
+    always @(posedge CLK) begin
+        if (RESET)
+            $readmemb("Frame_Buffer_Init.mem", frame);
+    end
     // The code block below implements the frame buffer logic for port A
 
     always @(posedge A_CLK) begin
