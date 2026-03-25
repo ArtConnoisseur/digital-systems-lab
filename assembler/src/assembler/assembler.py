@@ -54,11 +54,13 @@ class Mnemonics:
     switch_status_car_en:   int = 0x80
     switch_status_sens:     int = 0x81 
     switch_status_fg:       int = 0x82 
-    switch_status_bg:       int = 0x83 
+    switch_status_bg:       int = 0x83
+    switch_status_car_sel:  int = 0x84
 
-    # IR Peripheral 
+    # IR Peripheral
     ir_command:     int = 0x90
-    ir_enable:      int = 0x91 
+    ir_enable:      int = 0x91
+    ir_car_sel:     int = 0x92
 
     # Mouse registers
     mouse_status:      int = 0xA0

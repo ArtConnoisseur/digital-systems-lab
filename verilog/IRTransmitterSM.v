@@ -20,10 +20,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 /* 
-IRTransmitterSM.v  —  Yellow-coded car IR transmitter state machine
+IRTransmitterSM.v  -  Yellow-coded car IR transmitter state machine
 
 Carrier frequency : 38 kHz
-   100 MHz / 38 000 Hz = 2631.6 cycles/period  →  half-period = 1316 cycles
+   100 MHz / 38 000 Hz = 2631.6 cycles/period  ?  half-period = 1316 cycles
 
 Packet structure (carrier-pulse counts):
    Start(88)  Gap(40)  CarSelect(22)  Gap(40)
@@ -41,25 +41,28 @@ module IRTransmitterSM(
     input        CLK,
     input  [3:0] COMMAND,
     input        SEND_PACKET,
-    output       IR_LED
+    output       IR_LED,
+    // Car-specific parameters (selected by MUX in IR_Peripheral)
+    input [10:0] HALF_PERIOD_IN,
+    input  [7:0] START_COUNT,
+    input  [7:0] GAP_COUNT,
+    input  [7:0] CAR_SEL_COUNT,
+    input  [7:0] DIR_ASSERT,
+    input  [7:0] DIR_DEASSERT
 );
 
-    // Carrier generator  (38 kHz, half-period = 1316 cycles)
-    localparam HALF_PERIOD = 1388;   // 100 MHz / 38 kHz / 2
+    // Carrier generator — runtime-selectable half-period
+    reg [10:0] carrier_count;
+    wire CarrierTick = (carrier_count == HALF_PERIOD_IN - 1);
 
-    wire CarrierTick;
-
-    GenericCounter #(
-        .COUNTER_WIDTH(11),           // 2^11 = 2048 > 1316
-        .COUNTER_MAX  (HALF_PERIOD - 1),
-        .INITIAL_VALUE(0)
-    ) u_CarrierHalfPeriod (
-        .CLK     (CLK),
-        .RESET   (RESET),
-        .ENABLE  (1'b1),
-        .TRIG_OUT(CarrierTick),
-        .COUNT   ()
-    );
+    always @(posedge CLK) begin
+        if (RESET)
+            carrier_count <= 0;
+        else if (CarrierTick)
+            carrier_count <= 0;
+        else
+            carrier_count <= carrier_count + 1;
+    end
 
     // Toggle carrier on every half-period tick
     reg CurrCarrier;
@@ -70,7 +73,7 @@ module IRTransmitterSM(
             CurrCarrier <= ~CurrCarrier;
     end
 
-    // Rising-edge detect on carrier → one CLK-wide pulse per carrier period
+    // Rising-edge detect on carrier ? one CLK-wide pulse per carrier period
     reg CarrierPrev;
     always @(posedge CLK) begin
         if (RESET) CarrierPrev <= 1'b0;
@@ -93,7 +96,7 @@ module IRTransmitterSM(
     localparam GAP_F      = 4'd10;
     localparam FORWARD    = 4'd11;
 
-    // Curr / Next registers  —  processor-style two-always pattern
+    // Curr / Next registers  -  processor-style two-always pattern
     reg [3:0] CurrState,       NextState;
     reg [7:0] CurrPulseCount,  NextPulseCount;
     reg       CurrBurstEnable, NextBurstEnable;
@@ -116,17 +119,17 @@ module IRTransmitterSM(
     reg [7:0] TargetCount;
     always @(*) begin
         case (CurrState)
-            START:      TargetCount = 8'd191;
-            GAP_CS:     TargetCount = 8'd25;
-            CAR_SELECT: TargetCount = 8'd47;
-            GAP_R:      TargetCount = 8'd25;
-            RIGHT:      TargetCount = COMMAND[0] ? 8'd47 : 8'd22;
-            GAP_L:      TargetCount = 8'd25;
-            LEFT:       TargetCount = COMMAND[1] ? 8'd47 : 8'd22;
-            GAP_B:      TargetCount = 8'd25;
-            BACKWARD:   TargetCount = COMMAND[2] ? 8'd47 : 8'd22;
-            GAP_F:      TargetCount = 8'd25;
-            FORWARD:    TargetCount = COMMAND[3] ? 8'd47 : 8'd22;
+            START:      TargetCount = START_COUNT;
+            GAP_CS:     TargetCount = GAP_COUNT;
+            CAR_SELECT: TargetCount = CAR_SEL_COUNT;
+            GAP_R:      TargetCount = GAP_COUNT;
+            RIGHT:      TargetCount = COMMAND[0] ? DIR_ASSERT : DIR_DEASSERT;
+            GAP_L:      TargetCount = GAP_COUNT;
+            LEFT:       TargetCount = COMMAND[1] ? DIR_ASSERT : DIR_DEASSERT;
+            GAP_B:      TargetCount = GAP_COUNT;
+            BACKWARD:   TargetCount = COMMAND[2] ? DIR_ASSERT : DIR_DEASSERT;
+            GAP_F:      TargetCount = GAP_COUNT;
+            FORWARD:    TargetCount = COMMAND[3] ? DIR_ASSERT : DIR_DEASSERT;
             default:    TargetCount = 8'd0;
         endcase
     end
@@ -152,7 +155,7 @@ module IRTransmitterSM(
             default: begin
                 if (CarrierRise) begin
                     if (CurrPulseCount == TargetCount - 1) begin
-                        // State complete — advance to next state
+                        // State complete - advance to next state
                         NextPulseCount = 8'h00;
                         case (CurrState)
                             START:      begin NextState = GAP_CS;     NextBurstEnable = 1'b0; end

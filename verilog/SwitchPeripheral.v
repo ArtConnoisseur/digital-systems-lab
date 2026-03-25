@@ -44,7 +44,8 @@ module SwitchPeripheral (
     localparam SWITCH_STATUS_CAR_EN = SWITCH_BASE + 0;
     localparam SWITCH_STATUS_SENS   = SWITCH_BASE + 1;
     localparam SWITCH_STATUS_FG     = SWITCH_BASE + 2; 
-    localparam SWITCH_STATUS_BG     = SWITCH_BASE + 3; 
+    localparam SWITCH_STATUS_BG     = SWITCH_BASE + 3;
+    localparam SWITCH_STATUS_CAR_SEL = SWITCH_BASE + 4;
 
     // Local registers 
     reg bus_re; 
@@ -62,13 +63,9 @@ module SwitchPeripheral (
                 case (BUS_ADDR)
                     SWITCH_STATUS_CAR_EN    : temp_bus_data <= SWITCH[0];
                     SWITCH_STATUS_SENS      : temp_bus_data <= SWITCH[2:1];
-<<<<<<< Updated upstream
                     SWITCH_STATUS_FG        : temp_bus_data <= SWITCH[6:3];
                     SWITCH_STATUS_BG        : temp_bus_data <= SWITCH[10:7];
-=======
-                    SWITCH_STATUS_FG        : temp_bus_data <= SWITCH[4:3];
-                    SWITCH_STATUS_BG        : temp_bus_data <= SWITCH[7:5];
->>>>>>> Stashed changes
+                    SWITCH_STATUS_CAR_SEL   : temp_bus_data <= SWITCH[12:11];
                 endcase
             end else begin
                 bus_re <= 0; 
