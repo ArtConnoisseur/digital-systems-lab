@@ -56,6 +56,7 @@ class Mnemonics:
     switch_status_fg:       int = 0x82 
     switch_status_bg:       int = 0x83
     switch_status_car_sel:  int = 0x84
+    switch_cur_col_sel:     int = 0x85
 
     # IR Peripheral
     ir_command:     int = 0x90
@@ -76,6 +77,9 @@ class Mnemonics:
     vga_y:         int = 0xB2
     vga_fg:        int = 0xB3
     vga_bg:        int = 0xB4
+    vga_cur_x:     int = 0xB5 
+    vga_cur_y:     int = 0xB6
+    vga_cur_color: int = 0xB7
 
     # Timer registers
     timer_value:   int = 0xF0

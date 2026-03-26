@@ -52,7 +52,7 @@ module IRTransmitterSM(
 );
 
     // Carrier generator — runtime-selectable half-period
-    reg [10:0] carrier_count;
+    reg [10:0] carrier_count; 
     wire CarrierTick = (carrier_count == HALF_PERIOD_IN - 1);
 
     always @(posedge CLK) begin

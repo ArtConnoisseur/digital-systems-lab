@@ -1,0 +1,278 @@
+08  // [0x00] Start in IDLE mode
+
+// ==== Mouse ISR (0x01) ====
+00  // [0x01] A <- [0xA1]
+A1
+02  // [0x03] [0xB5] <- A
+B5
+00  // [0x05] A <- [0xA2]
+A2
+02  // [0x07] [0xB6] <- A
+B6
+08  // [0x09] End of Mouse ISR
+
+// ==== Timer ISR (0x0A) ====
+00  // [0x0A] Load Enable status
+80
+02  // [0x0C] Store enable value in IR
+91
+00  // [0x0E] A <- [0x81]
+81
+02  // [0x10] [0xA5] <- A
+A5
+00  // [0x12] Load car select switch value
+84
+02  // [0x14] Store car select to IR Peripheral
+92
+00  // [0x16] Get the FG switch value. This is the offset from base ref
+82
+01  // [0x18] Get the FG base reference in B
+36
+04  // [0x1A] Increment A by base ref to give A = offset + base_ref
+0B  // [0x1B] Derefernce A for the right value
+02  // [0x1C] Store colour in VGA FG register
+B3
+00  // [0x1E] Repeat for BG
+83
+01  // [0x20] Get the BG base reference in B
+35
+04  // [0x22] Increment A by base ref to give A = offset + base_ref
+0B  // [0x23] Derefernce A for the right value
+02  // [0x24] Store colour in VGA BG register
+B4
+00  // [0x26] Load MouseY
+A2
+01  // [0x28] Load 40
+03
+B4  // [0x2A] A = (MouseY < 40)
+02  // [0x2B] Store DirForward (Y small = Forward)
+07
+00  // [0x2D] Load MouseY
+A2
+01  // [0x2F] Load 79
+05
+A4  // [0x31] A = (MouseY > 79)
+02  // [0x32] Store DirBackward (Y large = Backward)
+08
+00  // [0x34] Load MouseX
+A1
+01  // [0x36] Load 53
+04
+B4  // [0x38] A = (MouseX < 53)
+02  // [0x39] Store DirLeft
+09
+00  // [0x3B] Load MouseX
+A1
+01  // [0x3D] Load 106
+06
+A4  // [0x3F] A = (MouseX > 106)
+02  // [0x40] Store DirRight
+0A
+00  // [0x42] Load mouse enable status
+80
+02  // [0x44] Set Enable to the IR Peripheral
+91
+00  // [0x46] Load DirRight (bit 0)
+0A
+02  // [0x48] ir_cmd = DirRight
+0B
+00  // [0x4A] Load DirLeft
+09
+34  // [0x4C] A <<= 1  (bit 1)
+01  // [0x4D] Load ir_cmd
+0B
+04  // [0x4F] A |= DirLeft<<1
+02  // [0x50] Save ir_cmd
+0B
+00  // [0x52] Load DirBackward
+08
+34  // [0x54] A <<= 1
+34  // [0x55] A <<= 1  (bit 2)
+01  // [0x56] Load ir_cmd
+0B
+04  // [0x58] A |= DirBackward<<2
+02  // [0x59] Save ir_cmd
+0B
+00  // [0x5B] Load DirForward
+07
+34  // [0x5D] A <<= 1
+34  // [0x5E] A <<= 1
+34  // [0x5F] A <<= 1  (bit 3)
+01  // [0x60] Load ir_cmd
+0B
+04  // [0x62] A |= DirForward<<3
+02  // [0x63] Write IR command to peripheral 0x90
+90
+00  // [0x65] Check DirForward
+07
+01  // [0x67] Load 1
+01
+96  // [0x69] if Fwd goto IS_FORWARD
+82
+00  // [0x6B] Check DirBackward
+08
+01  // [0x6D] Load 1
+01
+96  // [0x6F] if Bwd goto IS_BACKWARD
+93
+00  // [0x71] Check DirRight
+0A
+01  // [0x73] Load 1
+01
+96  // [0x75] Centre+Right -> _r
+A4
+00  // [0x77] Check DirLeft
+09
+01  // [0x79] Load 1
+01
+96  // [0x7B] Centre+Left  -> _L
+A9
+00  // [0x7D] Load display code 0xEC (_C)
+0C
+02  // [0x7F] Write to 7-seg 0xD0
+D0
+08  // [0x81] End Timer ISR
+
+// ==== IS_FORWARD (0x82) ====
+00  // [0x82] Check DirLeft
+09
+01  // [0x84] Load 1
+01
+96  // [0x86] Fwd+Left  -> FL
+AE
+00  // [0x88] Check DirRight
+0A
+01  // [0x8A] Load 1
+01
+96  // [0x8C] Fwd+Right -> Fr
+B3
+00  // [0x8E] Load display code 0xEF (_F)
+0D
+02  // [0x90] Write to 7-seg 0xD0
+D0
+08  // [0x92] End Timer ISR
+
+// ==== IS_BACKWARD (0x93) ====
+00  // [0x93] Check DirLeft
+09
+01  // [0x95] Load 1
+01
+96  // [0x97] Bwd+Left  -> bL
+B8
+00  // [0x99] Check DirRight
+0A
+01  // [0x9B] Load 1
+01
+96  // [0x9D] Bwd+Right -> br
+BD
+00  // [0x9F] Load display code 0xEB (_b)
+0E
+02  // [0xA1] Write to 7-seg 0xD0
+D0
+08  // [0xA3] End Timer ISR
+
+// ==== CENTRE_RIGHT (0xA4) ====
+00  // [0xA4] Load display code 0xEA (_r)
+0F
+02  // [0xA6] Write to 7-seg 0xD0
+D0
+08  // [0xA8] End Timer ISR
+
+// ==== CENTRE_LEFT (0xA9) ====
+00  // [0xA9] Load display code 0xED (_L)
+10
+02  // [0xAB] Write to 7-seg 0xD0
+D0
+08  // [0xAD] End Timer ISR
+
+// ==== FWD_LEFT (0xAE) ====
+00  // [0xAE] Load display code 0xFD (FL)
+12
+02  // [0xB0] Write to 7-seg 0xD0
+D0
+08  // [0xB2] End Timer ISR
+
+// ==== FWD_RIGHT (0xB3) ====
+00  // [0xB3] Load display code 0xFA (Fr)
+11
+02  // [0xB5] Write to 7-seg 0xD0
+D0
+08  // [0xB7] End Timer ISR
+
+// ==== BWD_LEFT (0xB8) ====
+00  // [0xB8] Load display code 0xBD (bL)
+14
+02  // [0xBA] Write to 7-seg 0xD0
+D0
+08  // [0xBC] End Timer ISR
+
+// ==== BWD_RIGHT (0xBD) ====
+00  // [0xBD] Load display code 0xBA (br)
+13
+02  // [0xBF] Write to 7-seg 0xD0
+D0
+08  // [0xC1] End Timer ISR
+
+// ==== Pad 0xC2 to 0xFD. Comment: Pad to Vector Table (0xC2) ====
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+08
+0A  // [0xFE] 0xFE: Timer ISR address
+01  // [0xFF] 0xFF: Mouse ISR address

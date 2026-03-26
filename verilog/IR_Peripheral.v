@@ -50,7 +50,7 @@ module IR_Peripheral(
 );
 
     // Parameters
-    parameter BaseAddr = 8'h90;
+    parameter BaseAddr  = 8'h90;
     localparam COMMAND  = BaseAddr + 0;
     localparam ENABLE   = BaseAddr + 1;
     localparam CAR_SEL  = BaseAddr + 2;
@@ -106,7 +106,7 @@ module IR_Peripheral(
     //                          Blue    Yellow  Green   Red
     MUX_4way #(.WIDTH(11)) mux_half_period (
         .CONTROL(car_sel),
-        .IN0(11'd1389), .IN1(11'd1316), .IN2(11'd1333), .IN3(11'd1389),
+        .IN0(11'd1388), .IN1(11'd1316), .IN2(11'd1333), .IN3(11'd1388),
         .OUT(half_period_sel)
     );
 

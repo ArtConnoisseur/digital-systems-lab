@@ -62,6 +62,11 @@ module VGASignalOut(
         input VGA_DATA,     // VGA Data input for displaying correct colour
                             // i.e. FG or BG to the screen
 
+        // Cursor Overlay 
+        input [7:0] CURSOR_X,
+        input [6:0] CURSOR_Y, 
+        input [7:0] CURSOR_COLOUR, 
+
         // VGA Port
         output reg HS,      // Horizontal Sync Signal
         output reg VS,      // Vertical Sync Sugnal
@@ -193,7 +198,7 @@ module VGASignalOut(
             // Map input VGA data bit to Foreground or Background colour; here BG is
             // when the pixel is zero and FG is when the pixel is one.
             // When not in the display period, the colour should be set to zero.
-            COLOUR_OUT <= active ? (VGA_DATA ? FG : BG) : 8'h00;
+            COLOUR_OUT <= active ? (VGA_DATA ? FG : ( (X == CURSOR_X && Y == CURSOR_Y) ? CURSOR_COLOUR : BG)) : 8'h00;
         end
     end
 

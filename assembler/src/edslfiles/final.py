@@ -73,9 +73,19 @@ fg_val_13 = ram.var(0xE4, "fg_val_13: mint         #98FF98 (G=3,B=4,R=4)")
 fg_val_14 = ram.var(0xFD, "fg_val_14: light blue   #ADD8E6 (G=3,B=7,R=5)")
 fg_val_15 = ram.var(0x1F, "fg_val_15: light rose   #FF007F (G=0,B=3,R=7)")
 
+
+# Cursor Colours (light) — format: GG BBB RRR
+# CSS -> R=css_r//32, B=css_b//32, G=css_g//64
+cur_col_base = ram.here()
+cur_col_00 = ram.var(0xFF, "")
+cur_col_01 = ram.var(0x90, "")
+cur_col_02 = ram.var(0x52, "")
+cur_col_03 = ram.var(0x1F, "")
+
 # Pointers to the fg and bg base values
 bg_base_ref = ram.var(bg_base, "BG Base Reference Address")
 fg_base_ref = ram.var(fg_base, "FG Base Reference Address")
+cur_col_base_ref = ram.var(cur_col_base, "Cursor Colour Base Reference Address")
 
 # ── ROM: start in IDLE ────────────────────────────────────────────────────────
 asm.goto_idle("Start in IDLE mode")
@@ -84,19 +94,25 @@ asm.goto_idle("Start in IDLE mode")
 mouse_isr = asm.here()
 asm.section_comment("Mouse ISR")
 
-asm.load(A, pixel_data,   "Load cached pixel value")
-asm.store(A, M.vga_pixel, "Restore pixel at old X,Y")
+# asm.load(A, pixel_data,   "Load cached pixel value")
+# asm.store(A, M.vga_pixel, "Restore pixel at old X,Y")
 
-asm.load(A, M.mouse_x,   "Load MouseX from peripheral")
-asm.store(A, M.vga_x,    "Set VGA X address")
-asm.load(A, M.mouse_y,   "Load MouseY from peripheral")
-asm.store(A, M.vga_y,    "Set VGA Y address")
+# asm.load(A, M.mouse_x,   "Load MouseX from peripheral")
+# asm.store(A, M.vga_x,    "Set VGA X address")
+# asm.load(A, M.mouse_y,   "Load MouseY from peripheral")
+# asm.store(A, M.vga_y,    "Set VGA Y address")
 
-asm.load(A, M.vga_pixel,  "Read pixel at new X,Y")
-asm.store(A, pixel_data,  "Cache it in RAM")
+# asm.load(A, M.vga_pixel,  "Read pixel at new X,Y")
+# asm.store(A, pixel_data,  "Cache it in RAM")
 
-asm.load(A, const_1,      "Load 1")
-asm.store(A, M.vga_pixel, "Draw cursor pixel")
+# asm.load(A, const_1,      "Load 1")
+# asm.store(A, M.vga_pixel, "Draw cursor pixel")
+
+asm.load(A, M.mouse_x)
+asm.store(A, M.vga_cur_x)
+
+asm.load(A, M.mouse_y)
+asm.store(A, M.vga_cur_y)
 
 asm.goto_idle("End of Mouse ISR")
 
@@ -110,16 +126,24 @@ asm.load(A, M.switch_status_sens)
 asm.store(A, M.mouse_sensitivity)
 asm.load(A, M.switch_status_car_sel, "Load car select switch value")
 asm.store(A, M.ir_car_sel, "Store car select to IR Peripheral")
+
 asm.load(A, M.switch_status_fg, "Get the FG switch value. This is the offset from base ref")
 asm.load(B, fg_base_ref, "Get the FG base reference in B")
 asm.add(A, "Increment A by base ref to give A = offset + base_ref")
 asm.deref(A, "Derefernce A for the right value")
 asm.store(A, M.vga_fg, "Store colour in VGA FG register")
+
 asm.load(A, M.switch_status_bg, "Repeat for BG")
 asm.load(B, bg_base_ref, "Get the BG base reference in B")
 asm.add(A, "Increment A by base ref to give A = offset + base_ref")
 asm.deref(A, "Derefernce A for the right value")
 asm.store(A, M.vga_bg, "Store colour in VGA BG register")
+
+asm.load(A, M.switch_cur_col_sel)
+asm.load(B, cur_col_base_ref)
+asm.add(A)
+asm.deref(A)
+asm.store(A, M.vga_cur_color)
 
 # Step 1: Compute direction flags from mouse position
 asm.load(A, M.mouse_y,  "Load MouseY")

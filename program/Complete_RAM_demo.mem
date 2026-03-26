@@ -51,5 +51,10 @@ FF // [31] fg_val_12: lavender     #E6E6FA (G=3,B=7,R=7)
 E4 // [32] fg_val_13: mint         #98FF98 (G=3,B=4,R=4)
 FD // [33] fg_val_14: light blue   #ADD8E6 (G=3,B=7,R=5)
 1F // [34] fg_val_15: light rose   #FF007F (G=0,B=3,R=7)
-15 // [35] BG Base Reference Address
-25 // [36] FG Base Reference Address
+FF // [35] 
+90 // [36] 
+52 // [37] 
+1F // [38] 
+15 // [39] BG Base Reference Address
+25 // [3A] FG Base Reference Address
+35 // [3B] Cursor Colour Base Reference Address

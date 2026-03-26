@@ -79,17 +79,19 @@ module VGABusInterface(
     localparam PIXEL_DATA_REF  = VGA_BASE + 0;  
     localparam FG_REF          = VGA_BASE + 3; 
     localparam BG_REF          = VGA_BASE + 4;  
+    localparam CURSOR_X        = VGA_BASE + 5; 
+    localparam CURSOR_Y        = VGA_BASE + 6;
+    localparam CURSOR_COLOUR   = VGA_BASE + 7; 
 
     // Frame buffer control
-    reg [7:0] X_ADDR;
-    reg [6:0] Y_ADDR;
+    reg [7:0] X_ADDR, CUR_X;
+    reg [6:0] Y_ADDR, CUR_Y;
     reg A_DATA_IN;
     reg A_WE;
     wire A_DATA_OUT;
 
     // Colour
-    reg [7:0] FG;
-    reg [7:0] BG;
+    reg [7:0] FG, BG, CUR_COLOUR;
 
     // VGA wires
     wire CLK25;
@@ -97,7 +99,6 @@ module VGABusInterface(
     wire [7:0] X_OUT;
     wire [6:0] Y_OUT;
     wire [7:0] COLOUR_OUT_8;
-
 
     // Combinatorial bus decode for X and Y
     // values
@@ -117,10 +118,13 @@ module VGABusInterface(
                         A_DATA_IN <= BUS_DATA[0];
                         A_WE      <= 1'b1;
                     end
-                    X_REF:  X_ADDR <= BUS_DATA;
-                    Y_REF:  Y_ADDR <= BUS_DATA[6:0];
-                    FG_REF: FG     <= BUS_DATA; 
-                    BG_REF: BG     <= BUS_DATA;
+                    X_REF         : X_ADDR     <= BUS_DATA;
+                    Y_REF         : Y_ADDR     <= BUS_DATA[6:0];
+                    FG_REF        : FG         <= BUS_DATA; 
+                    BG_REF        : BG         <= BUS_DATA;
+                    CURSOR_X      : CUR_X      <= BUS_DATA; 
+                    CURSOR_Y      : CUR_Y      <= BUS_DATA[6:0];
+                    CURSOR_COLOUR : CUR_COLOUR <= BUS_DATA; 
                     default: ;
                 endcase
             end
@@ -167,7 +171,10 @@ module VGABusInterface(
         .VGA_DATA(VGA_DATA),
         .HS(HS),
         .VS(VS),
-        .COLOUR_OUT(COLOUR_OUT_8)
+        .COLOUR_OUT(COLOUR_OUT_8),
+        .CURSOR_X(CUR_X), 
+        .CURSOR_Y(CUR_Y),
+        .CURSOR_COLOUR(CUR_COLOUR)
     );
 
     // This module is the bridge between the 12 bit colour representation
