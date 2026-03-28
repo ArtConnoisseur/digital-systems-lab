@@ -22,7 +22,10 @@
 /*
 * This module implements the switch peripheral for all additional features 
 * 
-* The idea is that when there is a single switch that switch
+* The idea is that the switch configuration is split up into different adresses
+* each setting a different value for the features of this project. The adresses
+* are stored in the `Mnemonics` class in the assembler and is trasnferred to the
+* appropriate memory location at the beginning of the timer ISR. 
 */
 
 module SwitchPeripheral (
